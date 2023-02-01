@@ -4,27 +4,27 @@ const settings = {
   url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?"
     + "query = pasta&"
     + "cuisine=italian"
-    + "& excludeCuisine=greek"
-    + "& diet=vegetarian"
-    + "& intolerances=gluten"
-    + "& equipment=pan"
+    // + "& excludeCuisine=greek"
+    // + "& diet=vegetarian"
+    // + "& intolerances=gluten"
+    // + "& equipment=pan"
     + "& includeIngredients=tomato % 2Ccheese"
-    + "& excludeIngredients=eggs"
-    + "& type=main % 20course"
-    + "& instructionsRequired=true"
-    + "& fillIngredients=false"
-    + "& addRecipeInformation=false"
-    + "& titleMatch=Crock % 20Pot"
-    + "& maxReadyTime=20"
-    + "& ignorePantry=true"
+    // + "& excludeIngredients=eggs"
+    // + "& type=main % 20course"
+    // + "& instructionsRequired=true"
+    // + "& fillIngredients=false"
+    + "& addRecipeInformation=true"
+    // + "& titleMatch=Crock % 20Pot"
+    // + "& maxReadyTime=20"
+    // + "& ignorePantry=true"
     + "& sort=calories"
     + "& sortDirection=asc"
-    + "& minCarbs=10"
-    + "& maxCarbs=100"
+    // + "& minCarbs=10"
+    // + "& maxCarbs=100"
     // + "& minProtein=10"
     // + "& maxProtein=100"
-    // + "& minCalories=50"
-    // + "& maxCalories=800"
+    + "& minCalories=50"
+    + "& maxCalories=800"
     // + "& minFat=10"
     // + "& maxFat=100"
     // + "& minAlcohol=0"
@@ -103,18 +103,18 @@ const settings = {
   },
 };
 
-// $.ajax(settings).done(function (response) {
-//   console.log(response);
-// });
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
 
-let cousineOptions = ["african", "chinese", "japanese", "korean", "vietnamese",
-  "thai", "indian", "british", "irish", "french", "italian", "mexican", "spanish",
-  "middle eastern", "jewish", "american", "cajun", "southern", "greek", "german", "nordic",
-  "eastern european", "caribbean", "latin american"];
+// let cousineOptions = ["african", "chinese", "japanese", "korean", "vietnamese",
+//   "thai", "indian", "british", "irish", "french", "italian", "mexican", "spanish",
+//   "middle eastern", "jewish", "american", "cajun", "southern", "greek", "german", "nordic",
+//   "eastern european", "caribbean", "latin american"];
 
-  i=0
-  cousineOptions.forEach(function (cousine) {
-    var option = $("<option>").attr("value", i).text(cousine);
-    $("#select-cousine").append(option);
-    i++;
-  })
+//   i=0
+//   cousineOptions.forEach(function (cousine) {
+//     var option = $("<option>").attr("value", i).text(cousine);
+//     $("#select-cousine").append(option);
+//     i++;
+//   })
