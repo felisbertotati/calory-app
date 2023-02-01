@@ -103,10 +103,11 @@ const settings = {
   },
 };
 
-$.ajax(settings).done(function (response) {
-  console.log(response);
-});
+// $.ajax(settings).done(function (response) {
+//   console.log(response);
+// });
 
+<<<<<<< HEAD
 
 
 
@@ -132,3 +133,16 @@ mapImage.attr('src',mapUrl)
 }
 
 runmaps();
+=======
+let cousineOptions = ["african", "chinese", "japanese", "korean", "vietnamese",
+  "thai", "indian", "british", "irish", "french", "italian", "mexican", "spanish",
+  "middle eastern", "jewish", "american", "cajun", "southern", "greek", "german", "nordic",
+  "eastern european", "caribbean", "latin american"];
+
+  i=0
+  cousineOptions.forEach(function (cousine) {
+    var option = $("<option>").attr("value", i).text(cousine);
+    $("#select-cousine").append(option);
+    i++;
+  })
+>>>>>>> 8402ce44dbb4721c112f8eb4a2d601aa0593e319
