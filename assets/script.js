@@ -1,14 +1,14 @@
 const settings = {
   async: true,
   crossDomain: true,
-  url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/ complexSearch ?"
+  url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?"
     + "query = pasta&"
     + "cuisine=italian"
     + "& excludeCuisine=greek"
     + "& diet=vegetarian"
     + "& intolerances=gluten"
     + "& equipment=pan"
-    + " & includeIngredients=tomato % 2Ccheese"
+    + "& includeIngredients=tomato % 2Ccheese"
     + "& excludeIngredients=eggs"
     + "& type=main % 20course"
     + "& instructionsRequired=true"
@@ -103,6 +103,18 @@ const settings = {
   },
 };
 
-$.ajax(settings).done(function (response) {
-  console.log(response);
-});
+// $.ajax(settings).done(function (response) {
+//   console.log(response);
+// });
+
+let cousineOptions = ["african", "chinese", "japanese", "korean", "vietnamese",
+  "thai", "indian", "british", "irish", "french", "italian", "mexican", "spanish",
+  "middle eastern", "jewish", "american", "cajun", "southern", "greek", "german", "nordic",
+  "eastern european", "caribbean", "latin american"];
+
+  i=0
+  cousineOptions.forEach(function (cousine) {
+    var option = $("<option>").attr("value", i).text(cousine);
+    $("#select-cousine").append(option);
+    i++;
+  })
