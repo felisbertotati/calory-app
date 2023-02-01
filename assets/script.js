@@ -107,6 +107,9 @@ $.ajax(settings).done(function (response) {
   console.log(response);
 });
 
+
+
+
 // let cousineOptions = ["african", "chinese", "japanese", "korean", "vietnamese",
 //   "thai", "indian", "british", "irish", "french", "italian", "mexican", "spanish",
 //   "middle eastern", "jewish", "american", "cajun", "southern", "greek", "german", "nordic",
@@ -118,3 +121,14 @@ $.ajax(settings).done(function (response) {
 //     $("#select-cousine").append(option);
 //     i++;
 //   })
+
+
+
+//google maps interaction
+function runmaps () {
+var mapImage = $('iframe');
+var mapUrl = "https://www.google.com/maps/embed/v1/place?key=" + mapKey + "&q=Space+Needle,Seattle+WA"
+mapImage.attr('src',mapUrl)
+}
+
+runmaps();
