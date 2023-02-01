@@ -103,11 +103,13 @@ const settings = {
   },
 };
 
+
+// API request
 // $.ajax(settings).done(function (response) {
 //   console.log(response);
 // });
 
-
+// Make drop down menue
 let cousineOptions = ["african", "chinese", "japanese", "korean", "vietnamese",
   "thai", "indian", "british", "irish", "french", "italian", "mexican", "spanish",
   "middle eastern", "jewish", "american", "cajun", "southern", "greek", "german", "nordic",
@@ -119,7 +121,7 @@ let cousineOptions = ["african", "chinese", "japanese", "korean", "vietnamese",
     $("#select-cousine").append(option);
     i++;
   })
-
+// End of drop down menue
 
 
 //google maps interaction
