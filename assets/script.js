@@ -121,20 +121,24 @@ const settings = {
 // API request
 $.ajax(settings).done(function (response) {
   console.log(response)
-  var recipeID = response.results.id
-  console.log(recipeID);
-  getIngredients(selectedRecipe);
+  for (var i = 0; i < response.results.length; i++){
+   var recipeID = response.results[i].id
+   console.log(recipeID);
+   getIngredients(recipeID);};
+  
+
+  
 });
 };
 
 
 // function to get ingredients from selected recipe
-function getIngredients(selectedRecipe) {
+function getIngredients(recipeID) {
   // var selectedRecipeID = selectedRecipe.results.id.val()
 const settings = {
 	"async": true,
 	"crossDomain": true,
-	"url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/479101/information",
+	"url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+ recipeID + "/information",
 	"method": "GET",
 	"headers": {
 		"X-RapidAPI-Key": keyAPI,
@@ -143,7 +147,8 @@ const settings = {
 };
 
 $.ajax(settings).done(function (response) {
-	console.log(response);
+  var ingredients = response['extendedIngredients']
+	console.log(ingredients);
 });
 }
 
@@ -183,8 +188,6 @@ cousineOptions.forEach(function (cousine) {
   i++;
 });
 // End of drop down menue
-
-
 
 
 
