@@ -1,19 +1,33 @@
+//event listener when user selects a cuisine from dropdown menu
+$(document).ready(function(){
+  $("select.form-select").change(function(){
+      var selectedRecipe = $(this).children("option:selected").text();
+      console.log(selectedRecipe);
+      
+      userRecipe(selectedRecipe);
+  });
+});
+
+// function to run depending on the cuisine selected
+function userRecipe(selectedRecipe){
+
 const settings = {
   async: true,
   crossDomain: true,
   url:
     "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?" +
-    "query = pasta&" +
-    "cuisine=italian" +
-    "& excludeCuisine=greek" +
-    + "& diet=vegetarian"
-    + "& intolerances=gluten"
-    + "& equipment=pan"
-    + "& includeIngredients=tomato % 2Ccheese"
-    + "& excludeIngredients=eggs"
-    + "& type=main % 20course" +
-    "& instructionsRequired=true"+
-    "& fillIngredients=true" +
+    "query=" +
+    selectedRecipe + "&" +
+    "cuisine=" + selectedRecipe  +
+    // + "& excludeCuisine=greek"
+    // + "& diet=vegetarian"
+    // + "& intolerances=gluten"
+    // + "& equipment=pan"
+    "& includeIngredients=" +
+    // + "& excludeIngredients=eggs"
+    // + "& type=main % 20course"
+    // + "& instructionsRequired=true"
+    // + "& fillIngredients=false" 
     "& addRecipeInformation=true" +
     + "& titleMatch=Crock % 20Pot"
     + "& maxReadyTime=20"
@@ -103,10 +117,36 @@ const settings = {
   },
 };
 
+
 // API request
-// $.ajax(settings).done(function (response) {
-//   console.log(response);
-// });
+$.ajax(settings).done(function (response) {
+  console.log(response)
+  var recipeID = response.results.id
+  console.log(recipeID);
+  getIngredients(selectedRecipe);
+});
+};
+
+
+// function to get ingredients from selected recipe
+function getIngredients(selectedRecipe) {
+  // var selectedRecipeID = selectedRecipe.results.id.val()
+const settings = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/479101/information",
+	"method": "GET",
+	"headers": {
+		"X-RapidAPI-Key": keyAPI,
+		"X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+	}
+};
+
+$.ajax(settings).done(function (response) {
+	console.log(response);
+});
+}
+
 
 // Make drop down menue
 let cousineOptions = [
@@ -144,8 +184,11 @@ cousineOptions.forEach(function (cousine) {
 });
 // End of drop down menue
 
-// get food facts from openfoodfacts API
 
+
+
+
+//ingredients function
 const searchTerm = "tomatoes";
 async function searchProducts() {
   const response = await fetch(
@@ -154,5 +197,4 @@ async function searchProducts() {
   const data = await response.json();
   console.log(data);
 }
-searchProducts();
-
+// searchProducts();
