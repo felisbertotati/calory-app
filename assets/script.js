@@ -12,21 +12,24 @@ $(document).ready(function () {
 function getIngredients(recipeID) {
   // var selectedRecipeID = selectedRecipe.results.id.val()
   const settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + recipeID + "/information",
-    "method": "GET",
-    "headers": {
+    async: true,
+    crossDomain: true,
+    url:
+      "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" +
+      recipeID +
+      "/information",
+    method: "GET",
+    headers: {
       "X-RapidAPI-Key": keyAPI,
-      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-    }
+      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    },
   };
 
   $.ajax(settings).done(function (response) {
-    var ingredients = response['extendedIngredients']
+    var ingredients = response["extendedIngredients"];
     console.log(ingredients);
   });
-};
+}
 
 // Make drop down menu
 let cousineOptions = [
@@ -98,35 +101,16 @@ function userRecipe(selectedRecipe) {
   });
 }
 
-//ingredients function
-const searchTerm = "tomatoes";
-async function searchProducts() {
-  const response = await fetch(
-    `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerm}&search_simple=1&action=process&json=1`
-  );
-  const data = await response.json();
-  console.log(data);
-}
-// searchProducts();
-
-//Search recipe by Ingredient
+// open food facts Api added in the search ingredient input
 function searchRecipe() {
-  //the value will be saved in the variable
+  //ingredients function() {
   var userInput = $("#search-input").val();
-  const setting = {
-    async: true,
-    crossDomain: true,
-    url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=${userInput}`,
+  $.ajax({
+    url: `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${userInput}&search_simple=1&action=process&json=1`,
     method: "GET",
-    dataType: "json",
-    headers: {
-      "X-RapidAPI-Key": "91a5f50724mshd1c325e76b92a81p1477b7jsn918ad9927618",
-      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    success: function (data) {
+      console.log(data);
     },
-  };
-  $.ajax(setting).done(function (response) {
-    var recipeID = response.results;
-    createCards(recipeID);
   });
 }
 
