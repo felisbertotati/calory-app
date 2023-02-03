@@ -1,9 +1,12 @@
+// create localStorage variable to store users last search
+let initialRecepie = localStorage.initialCousine || "japanese";
+userRecipe(initialRecepie);
+
 //event listener when user selects a cuisine from dropdown menu
 $(document).ready(function () {
   $("select.form-select").change(function () {
     var selectedRecipe = $(this).children("option:selected").text();
-    console.log(selectedRecipe);
-
+    // console.log(selectedRecipe);
     userRecipe(selectedRecipe);
   });
 });
@@ -69,6 +72,7 @@ cousineOptions.forEach(function (cousine) {
 
 // function to run depending on the cuisine selected
 function userRecipe(selectedRecipe) {
+  localStorage.initialCousine = selectedRecipe;
   $(".dishes-display").empty();
 
   const settings = {
@@ -82,7 +86,7 @@ function userRecipe(selectedRecipe) {
       "cuisine=" +
       selectedRecipe +
       "& includeIngredients=" +
-      "& addRecipeInformation=true" +
+      "& addRecipeInformation=true7741573ef1mshbe8aa22a9c85ee2p1b9a2cjsn22f4bd06bdf0" +
       "& sort=calories" +
       "& sortDirection=asc" +
       "& minCalories=50" +
