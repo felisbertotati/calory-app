@@ -1,5 +1,5 @@
-import { keyAPI } from './api.js';
-console.log(keyAPI);
+//import { keyAPI } from './api.js';
+//console.log(keyAPI);
 
 //event listener when user selects a cuisine from dropdown menu
 $(document).ready(function () {
