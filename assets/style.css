@@ -1,23 +1,94 @@
+/*style body*/
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-family: "Times New Roman", Times, serif;
 }
+/*added style in navigation bar*/
+.logo-nav {
+  width: 100px;
+  height: 30px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+/*change color of the text in navigation bar*/
+.nav-link {
+  color: black;
+  font-size: 20px;
+}
+/*added flex right to the navigation bar*/
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*style jumbotron*/
 
 .jumbotron {
   background-image: url("../img/banner.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  height: 30vh;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
+/*style text h2 in jumbotron*/
+.discover {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  padding-bottom: 50px;
+}
+
+.input-group-text {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#select-cousine {
+  width: 500px;
+  height: 40px;
+  background-color: rgb(255, 255, 255, 0.8);
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.choose-ingredientes {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  padding-bottom: 15px;
+}
+
+.input-group {
+  width: 400px;
+  height: 40px;
+}
+
+/*give margin left to the cards so that they will be center*/
+
+#search-input {
+  background-color: rgb(255, 255, 255, 0.8);
+  border-radius: 5px;
+}
+#search-btn {
+  color: rgb(39, 140, 197);
+  width: 70px;
+  border-radius: 5px;
+  border: rgb(39, 140, 197);
+}
+.dishes-display {
+  padding-left: 100px;
 }
 
 footer {

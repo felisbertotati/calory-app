@@ -204,7 +204,7 @@ function createCards(recepieArray) {
       "col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
     );
     let card = $("<div>")
-      .addClass("card")
+      .addClass("card mb-4")
       .css("width", "18rem")
       .attr("data-recipe", oneRecepie.id);
     let image = $("<img>")
@@ -214,29 +214,37 @@ function createCards(recepieArray) {
     let cardBody = $("<div>").addClass("card-body");
     let title = $("<h5>").addClass("card-title").text(oneRecepie.title);
     let btn = $("<a>")
-      .addClass("btn btn-primary")
-      // .attr("href", "#")
+      .addClass("btn btn-primary show-recipe")
       .attr("data-recipe", oneRecepie.id)
       .text("Show Recipe");
+
+    // function that shows the modal
+    //need help in this function
+    btn.on("click", function () {
+      let recepieId = $(this).data("recipe");
+      getIngredients(recepieId);
+      $("#myModal").modal("show");
+    });
     cardBody.append(title).append(btn);
     card.append(image).append(cardBody);
     column.append(card);
     cardContainer.append(column);
   });
-  // event listener to get ingredients from selected recipe
   $(".btn").on("click", getIngredients);
 }
 
+// event listener to get ingredients from selected recipe
+
 //function to get the ingredients once Show Recipe is clicked
-function getIngredients() {
-  var recipeID = $(this).attr("data-recipe");
+function getIngredients(recipeID) {
+  //var recipeID = $(this).attr("data-recipe");
   console.log(recipeID);
   const settings = {
     async: true,
     crossDomain: true,
     url:
       "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" +
-      recipeID.toString() +
+      recipeID +
       "/information",
     method: "GET",
     headers: {
