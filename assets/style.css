@@ -91,6 +91,14 @@ nav {
   padding-left: 100px;
 }
 
+/*image on ingredients cards to fit*/
+#img-size {
+  width: 150px;
+  height: 200px;
+  object-fit: contain;
+}
+
+
 
 /*footer {
   /* background-color: rgb(39, 140, 197, 0, 3);

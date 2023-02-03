@@ -102,17 +102,54 @@ function userRecipe(selectedRecipe) {
 }
 
 // open food facts Api added in the search ingredient input
-function searchRecipe() {
-  //ingredients function() {
+function searchIngredient() {
   var userInput = $("#search-input").val();
   $.ajax({
     url: `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${userInput}&search_simple=1&action=process&json=1`,
     method: "GET",
     success: function (data) {
-      console.log(data);
+      var IngredientArray = data.products
+      ingredientsCards(IngredientArray);
     },
   });
 }
+
+//create cards for ingredients searched by user
+function ingredientsCards(IngredientArray){
+  let cardContainer = $(".dishes-display");
+  cardContainer.empty();
+  console.log(IngredientArray)
+  IngredientArray.forEach(function (IngredientArray) {
+    let column = $("<div>").addClass(
+      "col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
+    );
+    let card = $("<div>")
+      .addClass("card mb-4")
+      .css("width", "18rem")
+      .attr("data-ingredient", IngredientArray.id);
+    let image = $("<img>")
+      .addClass("card-img-top")
+      .attr("src","img/placeholder-icon.ico")
+      .attr("src",IngredientArray.image_url)
+      .attr('id', "img-size")
+      .attr("alt", IngredientArray.product_name);
+    let cardBody = $("<div>").addClass("card-body");
+    let brand = IngredientArray.brands
+    let title = $("<h5>").addClass("card-title").text(IngredientArray.product_name + "-" + brand);
+    let btnLink = "https://world.openfoodfacts.org/product/"+ IngredientArray.id
+    //when user clicks Show more, it will redirect them to openfacts for more info
+    let btn = $("<a>")
+      .addClass("btn btn-secondary")
+      .attr("href", btnLink)
+      .attr("target","_blank")
+      .text("Show more");
+
+      cardBody.append(title).append(btn);
+      card.append(image).append(cardBody);
+      column.append(card);
+      cardContainer.append(column);
+});
+};
 
 // crete cards for each recepie
 
@@ -176,7 +213,4 @@ function getIngredients(recipeID) {
   });
 }
 
-
-$("")
-
-$("#search-btn").on("click", searchRecipe);
+$("#search-btn").on("click", searchIngredient);
