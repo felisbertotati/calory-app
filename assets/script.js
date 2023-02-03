@@ -222,9 +222,12 @@ function createCards(recepieArray) {
     //need help in this function
     btn.on("click", function () {
       let recepieId = $(this).data("recipe");
+      console.log(recepieId);
       getIngredients(recepieId);
-      $("#myModal").modal("show");
+
+      $("#myModal").removeClass("d-none");
     });
+
     cardBody.append(title).append(btn);
     card.append(image).append(cardBody);
     column.append(card);
