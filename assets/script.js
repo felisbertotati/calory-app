@@ -1,11 +1,11 @@
 // create localStorage variable to store users last search
-let initialRecepie = localStorage.initialCousine || "japanese";
+let initialRecepie = localStorage.initialCuisine || "japanese";
 userRecipe(initialRecepie);
 
 //event listener when user selects a cuisine from dropdown menu
 $(document).ready(function () {
   $("select.form-select").change(function () {
-    var selectedRecipe = $(this).children("option:selected").text();
+    var selectedRecipe = $(this).children("option:selected").text().toLowerCase();
     // console.log(selectedRecipe);
     userRecipe(selectedRecipe);
   });
@@ -35,7 +35,7 @@ function getIngredients(recipeID) {
 }
 
 // Make drop down menu
-let cousineOptions = [
+let cuisineOptions = [
   "african",
   "chinese",
   "japanese",
@@ -63,18 +63,19 @@ let cousineOptions = [
 ];
 
 i = 0;
-cousineOptions.forEach(function (cousine) {
-  var option = $("<option>").attr("value", i).text(cousine);
-  $("#select-cousine").append(option);
+cuisineOptions.forEach(function (cuisine) {
+  var option = $("<option>")
+    .attr("value", i)
+    .text(cuisine.charAt(0).toUpperCase() + cuisine.slice(1));
+  $("#select-cuisine").append(option);
   i++;
 });
 // End of drop down menu
 
 // function to run depending on the cuisine selected
 function userRecipe(selectedRecipe) {
-  localStorage.initialCousine = selectedRecipe;
-  $(".dishes-display").empty();
-
+  // Add last user choice to localStorage
+  localStorage.initialCuisine = selectedRecipe;
   const settings = {
     async: true,
     crossDomain: true,
@@ -100,6 +101,7 @@ function userRecipe(selectedRecipe) {
 
   // API request
   $.ajax(settings).done(function (response) {
+  //select results from request and put them into variable
     var recipeID = response.results;
     createCards(recipeID);
   });
@@ -184,7 +186,6 @@ function createCards(recepieArray) {
       let recepieId = $(this).data("recipe");
       console.log(recepieId);
       getIngredients(recepieId);
-
       $("#myModal").removeClass("d-none");
     });
 
