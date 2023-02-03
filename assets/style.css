@@ -20,11 +20,16 @@ nav {
   justify-content: space-between;
 }
 
+.section-heading{
+  text-align: left;
+}
+
   /* Footer Section*/
 
 footer {
   /* background-color: rgb(39, 140, 197, 0, 3);
   height: 100%; */
+  background-color: lightgray;
   width: 100%;
   text-align: center;
   padding: 4rem 1rem;
