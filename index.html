@@ -13,7 +13,7 @@
 
 <body>
   <nav>
-    <img src="./img/logo calorie2.png" alt="" />
+    <img src="./img/logo calorie2.png" alt="" class="logo-nav" />
     <ul class="nav justify-content-end">
       <li class="nav-item">
         <a class="nav-link" href="#">Recipe</a>
@@ -27,59 +27,93 @@
     <h1 class="d-none">Calorie Search</h1>
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
-        <div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupSelect01">Select cousine</label>
-          <select class="form-select" id="select-cousine">
-            <option selected>Choose...</option>
-          </select>
+        <h2 class="discover">
+          Discover your path to nutritious, delicious food.
+        </h2>
+        <div class="card-class-jumb container">
+          <div class="row mx-auto">
+            <div class="card-one card bg-transparent border-0">
+              <div class="input-group mr-5">
+                <label class="input-group-text" for="inputGroupSelect01">Select Cuisine</label>
+                <select class="form-select" id="select-cousine">
+                  <option selected>Choose...</option>
+                </select>
+              </div>
+            </div>
+            <div class="card-2 card bg-transparent border-0">
+              <h2 class="choose-ingredientes">Choose the Ingredients</h2>
+              <div class="input-group ml-5">
+                <input id="search-input" type="text" class="form-control" placeholder="Ingredient" aria-label="Username"
+                  aria-describedby="basic-addon1" />
+                <button type="submit" id="search-btn">Search</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
   <div class="row min-vh-30">
-    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-      <div>
-      </div>
-    </div>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"></div>
   </div>
   <main>
-    <!-- About Us Section -->
-    <section id="about-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 mx-auto text center">
-            <h2>About Us</h2>
-            <p>
-              At Calorie, our mission is to empower health-conscious individuals to make informed decisions about the
-              food they eat. We believe that knowing the calorie content of your meals and ingredients is the first step
-              towards making healthier choices and achieving your wellness goals. That's why we've created Calorie,
-              an
-              app that makes it easy for you to track your calorie intake and monitor your progress.
-              With Calorie, you'll have access to a database of foods and their calorie information, making it simple
-              for you to track what you're eating and make informed decisions.
-              Whether you're just starting out or you're a seasoned pro, Calorie is the perfect companion to help you
-              achieve your wellness goals. So why wait? Download Calorie today and start your journey towards a
-              healthier tomorrow.
-            </p>
-          </div>
-        </div>
+    <section>
+      <!--
+      <div id="about-us">
+        
+        <h2>About us</h2>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text
+          ever since the 1500s, when an unknown printer took a galley of type
+          and scrambled it to make a type specimen book. It has survived not
+          only five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged.
+        </p>
       </div>
     </section>
-    <!-- About Us Section Ends -->
+  -->
+      <!-- About Us Section -->
+      <section id="about-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 mx-auto text center">
+              <h2>About Us</h2>
+              <p>
+                At Calorie, our mission is to empower health-conscious individuals to make informed decisions about the
+                food they eat. We believe that knowing the calorie content of your meals and ingredients is the first
+                step
+                towards making healthier choices and achieving your wellness goals. That's why we've created Calorie,
+                an
+                app that makes it easy for you to track your calorie intake and monitor your progress.
+                With Calorie, you'll have access to a database of foods and their calorie information, making it simple
+                for you to track what you're eating and make informed decisions.
+                Whether you're just starting out or you're a seasoned pro, Calorie is the perfect companion to help you
+                achieve your wellness goals. So why wait? Download Calorie today and start your journey towards a
+                healthier tomorrow.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- About Us Section Ends -->
+      <h2>Food</h2>
+      <!-- here will be the country food name -->
 
-    <h2>Food</h2>
-    <!-- here will be the country food name -->
+      <!-- here it is the dishes, we will do it danamically -->
+      <div class="dishes-display row"></div>
 
-    <!-- here it is the dishes, we will do it danamically -->
-    <div class="dishes-display row">
-    </div>
-
-    <section class="map">
-      <!-- we will add the map here -->
-    </section>
+      <!-- Vertically centered scrollable modal -->
+      <div id="myModal" class="modal-box modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        ...
+      </div>
   </main>
 
-  <!-- Footer Section -->
+  <!--
+  <footer>
+    <img src="./img/logo calorie2.png" alt="Calorie" class="logo-two" />
+  </footer>
+-->
   <footer>
 
     <div class="container">
