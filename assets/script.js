@@ -1,12 +1,12 @@
 // create localStorage variable to store users last search
-let initialRecepies = localStorage.initialCousine || "japanese";
-userRecipe(initialRecepies);
+let initialRecepie = localStorage.initialCousine || "japanese";
+userRecipe(initialRecepie);
 
 //event listener when user selects a cuisine from dropdown menu
 $(document).ready(function () {
   $("select.form-select").change(function () {
     var selectedRecipe = $(this).children("option:selected").text();
-    console.log(selectedRecipe);
+    // console.log(selectedRecipe);
     userRecipe(selectedRecipe);
   });
 });
@@ -72,6 +72,7 @@ cousineOptions.forEach(function (cousine) {
 
 // function to run depending on the cuisine selected
 function userRecipe(selectedRecipe) {
+  localStorage.initialCousine = selectedRecipe;
   $(".dishes-display").empty();
 
   const settings = {
