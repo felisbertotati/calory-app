@@ -181,6 +181,8 @@ async function searchProducts() {
 // crete cards for each recepie
 
 function createCards(recepieArray) {
+  let cardContainer = $(".dishes-display");
+  cardContainer.empty();
   recepieArray.forEach(function (oneRecepie) {
     let column = $("<div>").addClass(
       "col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
@@ -203,7 +205,7 @@ function createCards(recepieArray) {
     cardBody.append(title).append(btn);
     card.append(image).append(cardBody);
     column.append(card)
-    $(".dishes-display").append(column);
+    cardContainer.append(column);
   });
   // event listener to get ingredients from selected recipe
   $('.btn').on("click", getIngredients)
