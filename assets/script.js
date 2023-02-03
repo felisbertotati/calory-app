@@ -5,14 +5,47 @@ $(document).ready(function () {
     console.log(selectedRecipe);
 
     userRecipe(selectedRecipe);
-
   });
 });
+// Make drop down menu
+let cousineOptions = [
+  "african",
+  "chinese",
+  "japanese",
+  "korean",
+  "vietnamese",
+  "thai",
+  "indian",
+  "british",
+  "irish",
+  "french",
+  "italian",
+  "mexican",
+  "spanish",
+  "middle eastern",
+  "jewish",
+  "american",
+  "cajun",
+  "southern",
+  "greek",
+  "german",
+  "nordic",
+  "eastern european",
+  "caribbean",
+  "latin american",
+];
+
+i = 0;
+cousineOptions.forEach(function (cousine) {
+  var option = $("<option>").attr("value", i).text(cousine);
+  $("#select-cousine").append(option);
+  i++;
+});
+// End of drop down menu
 
 // function to run depending on the cuisine selected
 function userRecipe(selectedRecipe) {
-
-  $('.dishes-display').empty()
+  $(".dishes-display").empty();
 
   const settings = {
     async: true,
@@ -20,8 +53,10 @@ function userRecipe(selectedRecipe) {
     url:
       "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?" +
       "query=" +
-      selectedRecipe + "&" +
-      "cuisine=" + selectedRecipe +
+      selectedRecipe +
+      "&" +
+      "cuisine=" +
+      selectedRecipe +
       // + "& excludeCuisine=greek"
       // + "& diet=vegetarian"
       // + "& intolerances=gluten"
@@ -30,7 +65,7 @@ function userRecipe(selectedRecipe) {
       // + "& excludeIngredients=eggs"
       // + "& type=main % 20course"
       // + "& instructionsRequired=true"
-      // + "& fillIngredients=false" 
+      // + "& fillIngredients=false"
       "& addRecipeInformation=true" +
       // + "& titleMatch=Crock % 20Pot"
       // + "& maxReadyTime=20"
@@ -120,50 +155,12 @@ function userRecipe(selectedRecipe) {
     },
   };
 
-
   // API request
   $.ajax(settings).done(function (response) {
-    // console.log(response)
-    createCards(response.results);
+    var recipeID = response.results;
+    createCards(recipeID);
   });
-};
-
-// Make drop down menu
-let cousineOptions = [
-  "african",
-  "chinese",
-  "japanese",
-  "korean",
-  "vietnamese",
-  "thai",
-  "indian",
-  "british",
-  "irish",
-  "french",
-  "italian",
-  "mexican",
-  "spanish",
-  "middle eastern",
-  "jewish",
-  "american",
-  "cajun",
-  "southern",
-  "greek",
-  "german",
-  "nordic",
-  "eastern european",
-  "caribbean",
-  "latin american",
-];
-
-i = 0;
-cousineOptions.forEach(function (cousine) {
-  var option = $("<option>").attr("value", i).text(cousine);
-  $("#select-cousine").append(option);
-  i++;
-});
-// End of drop down menu
-
+}
 
 //ingredients function
 const searchTerm = "tomatoes";
@@ -176,7 +173,26 @@ async function searchProducts() {
 }
 // searchProducts();
 
-
+//Search recipe by Ingredient
+function searchRecipe() {
+  //the value will be saved in the variable
+  var userInput = $("#search-input").val();
+  const setting = {
+    async: true,
+    crossDomain: true,
+    url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=${userInput}`,
+    method: "GET",
+    dataType: "json",
+    headers: {
+      "X-RapidAPI-Key": "91a5f50724mshd1c325e76b92a81p1477b7jsn918ad9927618",
+      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    },
+  };
+  $.ajax(setting).done(function (response) {
+    var recipeID = response.results;
+    createCards(recipeID);
+  });
+}
 
 // crete cards for each recepie
 
@@ -204,31 +220,35 @@ function createCards(recepieArray) {
       .text("Show Recipe");
     cardBody.append(title).append(btn);
     card.append(image).append(cardBody);
-    column.append(card)
+    column.append(card);
     cardContainer.append(column);
   });
   // event listener to get ingredients from selected recipe
-  $('.btn').on("click", getIngredients)
-};
+  $(".btn").on("click", getIngredients);
+}
 
 //function to get the ingredients once Show Recipe is clicked
 function getIngredients() {
-  var recipeID = $(this).attr('data-recipe');
+  var recipeID = $(this).attr("data-recipe");
   console.log(recipeID);
   const settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+ recipeID.toString() +"/information",
-    "method": "GET",
-    "headers": {
+    async: true,
+    crossDomain: true,
+    url:
+      "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" +
+      recipeID.toString() +
+      "/information",
+    method: "GET",
+    headers: {
       "X-RapidAPI-Key": keyAPI,
-      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-    }
+      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    },
   };
 
   $.ajax(settings).done(function (response) {
-    var ingredients = response['extendedIngredients']
-    console.log(ingredients);
+    // Pass the response to render ingredients and instructions
+    console.log(response);
   });
-};
+}
 
+$("#search-btn").on("click", searchRecipe);
