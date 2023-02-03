@@ -72,7 +72,7 @@ nav {
 
 .input-group {
   width: 400px;
-  height: 40px;
+  /* height: 40px; */
 }
 
 /*give margin left to the cards so that they will be center*/
