@@ -5,152 +5,130 @@ $(document).ready(function () {
     console.log(selectedRecipe);
 
     userRecipe(selectedRecipe);
+
   });
 });
 
 // function to run depending on the cuisine selected
-function userRecipe(selectedRecipe){
+function userRecipe(selectedRecipe) {
 
-const settings = {
-  async: true,
-  crossDomain: true,
-  url:
-    "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?" +
-    "query=" +
-    selectedRecipe + "&" +
-    "cuisine=" + selectedRecipe  +
-    // + "& excludeCuisine=greek"
-    // + "& diet=vegetarian"
-    // + "& intolerances=gluten"
-    // + "& equipment=pan"
-    "& includeIngredients=" +
-    // + "& excludeIngredients=eggs"
-    // + "& type=main % 20course"
-    // + "& instructionsRequired=true"
-    // + "& fillIngredients=false" 
-    "& addRecipeInformation=true" +
-    // + "& titleMatch=Crock % 20Pot"
-    // + "& maxReadyTime=20"
-    // + "& ignorePantry=true"
-    "& sort=calories" +
-    "& sortDirection=asc" +
-    // + "& minCarbs=10"
-    // + "& maxCarbs=100"
-    // + "& minProtein=10"
-    // + "& maxProtein=100"
-    "& minCalories=50" +
-    "& maxCalories=800",
-  // + "& minFat=10"
-  // + "& maxFat=100"
-  // + "& minAlcohol=0"
-  // + "& maxAlcohol=100"
-  // + "& minCaffeine=0"
-  // + "& maxCaffeine=100"
-  // + "& minCopper=0"
-  // + "& maxCopper=100"
-  // + "& minCalcium=0"
-  // + "& maxCalcium=100"
-  // + "& minCholine=0"
-  // + "& maxCholine=100"
-  // + "& minCholesterol=0"
-  // + "& maxCholesterol=100"
-  // + "& minFluoride=0"
-  // + "& maxFluoride=100"
-  // + "& minSaturatedFat=0"
-  // + "& maxSaturatedFat=100"
-  // + "& minVitaminA=0"
-  // + "& maxVitaminA=100"
-  // + "& minVitaminC=0"
-  // + "& maxVitaminC=100"
-  // + "& minVitaminD=0"
-  // + "& maxVitaminD=100"
-  // + "& minVitaminE=0"
-  // + "& maxVitaminE=100"
-  // + "& minVitaminK=0"
-  // + "& maxVitaminK=100"
-  // + "& minVitaminB1=0"
-  // + "& maxVitaminB1=100"
-  // + "& minVitaminB2=0"
-  // + "& maxVitaminB2=100"
-  // + "& minVitaminB5=0"
-  // + "& maxVitaminB5=100"
-  // + "& minVitaminB3=0"
-  // + "& maxVitaminB3=100"
-  // + "& minVitaminB6=0"
-  // + "& maxVitaminB6=100"
-  // + "& minVitaminB12=0"
-  // + "& maxVitaminB12=100"
-  // + "& minFiber=0"
-  // + "& maxFiber=100"
-  // + "& minFolate=0"
-  // + "& maxFolate=100"
-  // + "& minFolicAcid=0"
-  // + "& maxFolicAcid=100"
-  // + "& minIodine=0"
-  // + "& maxIodine=100"
-  // + "& minIron=0"
-  // + "& maxIron=100"
-  // + "& minMagnesium=0"
-  // + "& maxMagnesium=100"
-  // + "& minManganese=0"
-  // + "& maxManganese=100"
-  // + "& minPhosphorus=0"
-  // + "& maxPhosphorus=100"
-  // + "& minPotassium=0"
-  // + "& maxPotassium=100"
-  // + "& minSelenium=0"
-  // + "& maxSelenium=100"
-  // + "& minSodium=0"
-  // + "& maxSodium=100"
-  // + "& minSugar=0"
-  // + "& maxSugar=100"
-  // + "& minZinc=0"
-  // + "& maxZinc=100"
-  // + "& offset=0"
-  // + "& number=10"
-  // + "& limitLicense=false"
-  // + "& ranking=2"
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": keyAPI,
-    "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-  },
+  $('.dishes-display').empty()
+
+  const settings = {
+    async: true,
+    crossDomain: true,
+    url:
+      "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?" +
+      "query=" +
+      selectedRecipe + "&" +
+      "cuisine=" + selectedRecipe +
+      // + "& excludeCuisine=greek"
+      // + "& diet=vegetarian"
+      // + "& intolerances=gluten"
+      // + "& equipment=pan"
+      "& includeIngredients=" +
+      // + "& excludeIngredients=eggs"
+      // + "& type=main % 20course"
+      // + "& instructionsRequired=true"
+      // + "& fillIngredients=false" 
+      "& addRecipeInformation=true" +
+      // + "& titleMatch=Crock % 20Pot"
+      // + "& maxReadyTime=20"
+      // + "& ignorePantry=true"
+      "& sort=calories" +
+      "& sortDirection=asc" +
+      // + "& minCarbs=10"
+      // + "& maxCarbs=100"
+      // + "& minProtein=10"
+      // + "& maxProtein=100"
+      "& minCalories=50" +
+      "& maxCalories=800",
+    // + "& minFat=10"
+    // + "& maxFat=100"
+    // + "& minAlcohol=0"
+    // + "& maxAlcohol=100"
+    // + "& minCaffeine=0"
+    // + "& maxCaffeine=100"
+    // + "& minCopper=0"
+    // + "& maxCopper=100"
+    // + "& minCalcium=0"
+    // + "& maxCalcium=100"
+    // + "& minCholine=0"
+    // + "& maxCholine=100"
+    // + "& minCholesterol=0"
+    // + "& maxCholesterol=100"
+    // + "& minFluoride=0"
+    // + "& maxFluoride=100"
+    // + "& minSaturatedFat=0"
+    // + "& maxSaturatedFat=100"
+    // + "& minVitaminA=0"
+    // + "& maxVitaminA=100"
+    // + "& minVitaminC=0"
+    // + "& maxVitaminC=100"
+    // + "& minVitaminD=0"
+    // + "& maxVitaminD=100"
+    // + "& minVitaminE=0"
+    // + "& maxVitaminE=100"
+    // + "& minVitaminK=0"
+    // + "& maxVitaminK=100"
+    // + "& minVitaminB1=0"
+    // + "& maxVitaminB1=100"
+    // + "& minVitaminB2=0"
+    // + "& maxVitaminB2=100"
+    // + "& minVitaminB5=0"
+    // + "& maxVitaminB5=100"
+    // + "& minVitaminB3=0"
+    // + "& maxVitaminB3=100"
+    // + "& minVitaminB6=0"
+    // + "& maxVitaminB6=100"
+    // + "& minVitaminB12=0"
+    // + "& maxVitaminB12=100"
+    // + "& minFiber=0"
+    // + "& maxFiber=100"
+    // + "& minFolate=0"
+    // + "& maxFolate=100"
+    // + "& minFolicAcid=0"
+    // + "& maxFolicAcid=100"
+    // + "& minIodine=0"
+    // + "& maxIodine=100"
+    // + "& minIron=0"
+    // + "& maxIron=100"
+    // + "& minMagnesium=0"
+    // + "& maxMagnesium=100"
+    // + "& minManganese=0"
+    // + "& maxManganese=100"
+    // + "& minPhosphorus=0"
+    // + "& maxPhosphorus=100"
+    // + "& minPotassium=0"
+    // + "& maxPotassium=100"
+    // + "& minSelenium=0"
+    // + "& maxSelenium=100"
+    // + "& minSodium=0"
+    // + "& maxSodium=100"
+    // + "& minSugar=0"
+    // + "& maxSugar=100"
+    // + "& minZinc=0"
+    // + "& maxZinc=100"
+    // + "& offset=0"
+    // + "& number=10"
+    // + "& limitLicense=false"
+    // + "& ranking=2"
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": keyAPI,
+      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    },
+  };
+
+
+  // API request
+  $.ajax(settings).done(function (response) {
+    // console.log(response)
+    createCards(response.results);
+  });
 };
 
-
-// API request
-$.ajax(settings).done(function (response) {
-  console.log(response)
-  for (var i = 0; i < response.results.length; i++){
-   var recipeID = response.results[i].id
-   console.log(recipeID);
-   getIngredients(recipeID);};
-  createCards(response.results);
-});
-};
-
-
-// function to get ingredients from selected recipe
-function getIngredients(recipeID) {
-  // var selectedRecipeID = selectedRecipe.results.id.val()
-const settings = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+ recipeID + "/information",
-	"method": "GET",
-	"headers": {
-		"X-RapidAPI-Key": keyAPI,
-		"X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-	}
-};
-
-$.ajax(settings).done(function (response) {
-  var ingredients = response['extendedIngredients']
-	console.log(ingredients);
-});
-}
-
-// Make drop down menue
+// Make drop down menu
 let cousineOptions = [
   "african",
   "chinese",
@@ -184,7 +162,7 @@ cousineOptions.forEach(function (cousine) {
   $("#select-cousine").append(option);
   i++;
 });
-// End of drop down menue
+// End of drop down menu
 
 
 //ingredients function
@@ -198,6 +176,8 @@ async function searchProducts() {
 }
 // searchProducts();
 
+
+
 // crete cards for each recepie
 
 function createCards(recepieArray) {
@@ -208,7 +188,7 @@ function createCards(recepieArray) {
     let card = $("<div>")
       .addClass("card")
       .css("width", "18rem")
-      .attr("data-recepie", oneRecepie.id);
+      .attr("data-recipe", oneRecepie.id);
     let image = $("<img>")
       .addClass("card-img-top")
       .attr("src", oneRecepie.image)
@@ -217,11 +197,36 @@ function createCards(recepieArray) {
     let title = $("<h5>").addClass("card-title").text(oneRecepie.title);
     let btn = $("<a>")
       .addClass("btn btn-primary")
-      .attr("href", "#")
-      .text("Show recepie");
+      // .attr("href", "#")
+      .attr("data-recipe", oneRecepie.id)
+      .text("Show Recipe");
     cardBody.append(title).append(btn);
     card.append(image).append(cardBody);
     column.append(card)
     $(".dishes-display").append(column);
   });
-}
+  // event listener to get ingredients from selected recipe
+  $('.btn').on("click", getIngredients)
+};
+
+//function to get the ingredients once Show Recipe is clicked
+function getIngredients() {
+  var recipeID = $(this).attr('data-recipe');
+  console.log(recipeID);
+  const settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+ recipeID.toString() +"/information",
+    "method": "GET",
+    "headers": {
+      "X-RapidAPI-Key": keyAPI,
+      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+    }
+  };
+
+  $.ajax(settings).done(function (response) {
+    var ingredients = response['extendedIngredients']
+    console.log(ingredients);
+  });
+};
+
