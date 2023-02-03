@@ -120,7 +120,7 @@ function searchRecipe() {
     method: "GET",
     dataType: "json",
     headers: {
-      "X-RapidAPI-Key": "91a5f50724mshd1c325e76b92a81p1477b7jsn918ad9927618",
+      "X-RapidAPI-Key": keyAPI,
       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
     },
   };
@@ -191,5 +191,8 @@ function getIngredients(recipeID) {
     console.log(response);
   });
 }
+
+
+$("")
 
 $("#search-btn").on("click", searchRecipe);
