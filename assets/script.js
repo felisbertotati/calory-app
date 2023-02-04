@@ -107,6 +107,7 @@ function userRecipe(selectedRecipe) {
     //select results from request and put them into variable
     var recipeID = response.results;
     createCards(recipeID);
+    //console.log(response);
   });
 }
 
@@ -168,6 +169,7 @@ function ingredientsCards(IngredientArray) {
 function createCards(recepieArray) {
   let cardContainer = $(".dishes-display");
   cardContainer.empty();
+  //console.log(recepieArray);
   recepieArray.forEach(function (oneRecepie) {
     let column = $("<div>").addClass(
       "col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
@@ -188,12 +190,13 @@ function createCards(recepieArray) {
       .attr("data-toggle", "modal")
       .attr("data-target", "#exampleModalCenter")
       .text("Show Recipe");
-
+    //console.log(oneRecepie);
     // function that shows the modal that shows ingredients
     btn.on("click", function () {
       let recepieId = $(this).data("recipe");
       console.log(recepieId);
       getIngredients(recepieId);
+      //console.log(recepieId);
     });
 
     cardBody.append(title).append(btn);
@@ -204,26 +207,29 @@ function createCards(recepieArray) {
 }
 
 //function to get the ingredients once Show Recipe is clicked
-// function getIngredients(recipeID) {
-//   const settings = {
-//     async: true,
-//     crossDomain: true,
-//     url:
-//       "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" +
-//       recipeID +
-//       "/information",
-//     method: "GET",
-//     headers: {
-//       "X-RapidAPI-Key": keyAPI,
-//       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-//     },
-//   };
+function getIngredients(recipeID) {
+  const settings = {
+    async: true,
+    crossDomain: true,
+    url:
+      "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" +
+      recipeID +
+      "/information",
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": keyAPI,
+      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    },
+  };
 
-//   $.ajax(settings).done(function (response) {
-//     // Pass the response to render ingredients and instructions
-//     console.log(response);
-//   });
-// }
+  $.ajax(settings).done(function (response) {
+    // Pass the response to render ingredients and instructions
+    console.log(response);
+  });
+  // add staff to the modal
+  // let instructions = $("<p>");
+  // var instructionsEl = recipeID.instructions;
+}
 
 $("#search-btn").on("click", searchIngredient);
 
