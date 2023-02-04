@@ -1,11 +1,14 @@
 // create localStorage variable to store users last search
-let initialRecepie = localStorage.initialCuisine || "japanese";
-userRecipe(initialRecepie);
+// let initialRecepie = localStorage.initialCuisine || [];
+// userRecipe(initialRecepie);
 
 //event listener when user selects a cuisine from dropdown menu
 $(document).ready(function () {
   $("select.form-select").change(function () {
-    var selectedRecipe = $(this).children("option:selected").text().toLowerCase();
+    var selectedRecipe = $(this)
+      .children("option:selected")
+      .text()
+      .toLowerCase();
     // console.log(selectedRecipe);
     userRecipe(selectedRecipe);
   });
@@ -101,7 +104,7 @@ function userRecipe(selectedRecipe) {
 
   // API request
   $.ajax(settings).done(function (response) {
-  //select results from request and put them into variable
+    //select results from request and put them into variable
     var recipeID = response.results;
     createCards(recipeID);
   });
@@ -114,17 +117,17 @@ function searchIngredient() {
     url: `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${userInput}&search_simple=1&action=process&json=1`,
     method: "GET",
     success: function (data) {
-      var IngredientArray = data.products
+      var IngredientArray = data.products;
       ingredientsCards(IngredientArray);
     },
   });
 }
 
 //create cards for ingredients searched by user
-function ingredientsCards(IngredientArray){
+function ingredientsCards(IngredientArray) {
   let cardContainer = $(".dishes-display");
   cardContainer.empty();
-  console.log(IngredientArray)
+  console.log(IngredientArray);
   IngredientArray.forEach(function (IngredientArray) {
     let column = $("<div>").addClass(
       "col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
@@ -135,27 +138,30 @@ function ingredientsCards(IngredientArray){
       .attr("data-ingredient", IngredientArray.id);
     let image = $("<img>")
       .addClass("card-img-top")
-      .attr("src","img/placeholder-icon.ico")
-      .attr("src",IngredientArray.image_url)
-      .attr('id', "img-size")
+      .attr("src", "img/placeholder-icon.ico")
+      .attr("src", IngredientArray.image_url)
+      .attr("id", "img-size")
       .attr("alt", IngredientArray.product_name);
     let cardBody = $("<div>").addClass("card-body");
-    let brand = IngredientArray.brands
-    let title = $("<h5>").addClass("card-title").text(IngredientArray.product_name + "-" + brand);
-    let btnLink = "https://world.openfoodfacts.org/product/"+ IngredientArray.id
+    let brand = IngredientArray.brands;
+    let title = $("<h5>")
+      .addClass("card-title")
+      .text(IngredientArray.product_name + "-" + brand);
+    // let btnLink =
+    //   "https://world.openfoodfacts.org/product/" + IngredientArray.id;
     //when user clicks Show more, it will redirect them to openfacts for more info
     let btn = $("<a>")
       .addClass("btn btn-secondary")
-      .attr("href", btnLink)
-      .attr("target","_blank")
+      // .attr("href", btnLink)
+      .attr("target", "_blank")
       .text("Show more");
 
-      cardBody.append(title).append(btn);
-      card.append(image).append(cardBody);
-      column.append(card);
-      cardContainer.append(column);
-});
-};
+    cardBody.append(title).append(btn);
+    card.append(image).append(cardBody);
+    column.append(card);
+    cardContainer.append(column);
+  });
+}
 
 // crete cards for each recepie
 
@@ -179,6 +185,8 @@ function createCards(recepieArray) {
     let btn = $("<a>")
       .addClass("btn btn-primary show-recipe")
       .attr("data-recipe", oneRecepie.id)
+      .attr("data-toggle", "modal")
+      .attr("data-target", "#exampleModalCenter")
       .text("Show Recipe");
 
     // function that shows the modal that shows ingredients
@@ -186,7 +194,6 @@ function createCards(recepieArray) {
       let recepieId = $(this).data("recipe");
       console.log(recepieId);
       getIngredients(recepieId);
-      $("#myModal").removeClass("d-none");
     });
 
     cardBody.append(title).append(btn);

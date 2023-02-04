@@ -98,12 +98,10 @@ nav {
   object-fit: contain;
 }
 
-
-
 /*footer {
   /* background-color: rgb(39, 140, 197, 0, 3);
   height: 100%; */
-  /*width: 100%;
+/*width: 100%;
 /*} */
 
 /* Footer Section*/
@@ -117,43 +115,62 @@ footer {
   padding: 4rem 1rem;
 }
 
-footer a{
-  color:black;
+footer a {
+  color: black;
   text-decoration: none;
   transition: color 0.1s;
 }
 
 footer a:hover {
-  color:blue;
+  color: blue;
 }
 
 .container {
-  max-width: 1200px
-  margin 0 auto;
+  max-width: 1200px margin 0 auto;
 }
 
-.footer-main{
+.footer-main {
   display: flex;
   margin-bottom: 4rem;
 }
 
 /*added so they all extend to the same size*/
-.footer-column{
+.footer-column {
   flex-basis: 200px;
   flex-grow: 1;
   text-align: center;
 }
 
-.footer-heading{
+.footer-heading {
   margin-bottom: 1rem;
 }
 
-.footer-link{
+.footer-link {
   display: block;
   width: max-content;
   padding: 5px 10px;
   margin: 0 auto;
 }
-@media only screen and (max-width: 760px){ 
+@media only screen and (max-width: 760px) {
+}
 
+/* Modal */
+#myModal {
+  background-color: #fff;
+  border: 1px solid #999;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #333;
+  height: 500px;
+  padding: 20px;
+  width: 600px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+.close {
+  z-index: 20;
 }
