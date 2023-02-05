@@ -1,6 +1,7 @@
 // create localStorage variable to store users last search
-// let initialRecepie = localStorage.initialCuisine || [];
-// userRecipe(initialRecepie);
+// initial state is "japanese"
+let initialRecepie = localStorage.initialCuisine || "japanese";
+userRecipe(initialRecepie);
 
 //event listener when user selects a cuisine from dropdown menu
 $(document).ready(function () {
@@ -13,29 +14,6 @@ $(document).ready(function () {
     userRecipe(selectedRecipe);
   });
 });
-
-// function to get ingredients from selected recipe
-// function getIngredients(recipeID) {
-//   // var selectedRecipeID = selectedRecipe.results.id.val()
-//   const settings = {
-//     async: true,
-//     crossDomain: true,
-//     url:
-//       "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" +
-//       recipeID +
-//       "/information",
-//     method: "GET",
-//     headers: {
-//       "X-RapidAPI-Key": keyAPI,
-//       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-//     },
-//   };
-
-//   $.ajax(settings).done(function (response) {
-//     var ingredients = response["extendedIngredients"];
-//     console.log(ingredients);
-//   });
-// }
 
 // Make drop down menu
 let cuisineOptions = [
@@ -75,7 +53,7 @@ cuisineOptions.forEach(function (cuisine) {
 });
 // End of drop down menu
 
-// function to run depending on the cuisine selected
+// // function to run depending on the cuisine selected
 function userRecipe(selectedRecipe) {
   // Add last user choice to localStorage
   localStorage.initialCuisine = selectedRecipe;
@@ -128,7 +106,7 @@ function searchIngredient() {
 function ingredientsCards(IngredientArray) {
   let cardContainer = $(".dishes-display");
   cardContainer.empty();
-  console.log(IngredientArray);
+  // console.log(IngredientArray);
   IngredientArray.forEach(function (IngredientArray) {
     let column = $("<div>").addClass(
       "col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
@@ -206,6 +184,51 @@ function createCards(recepieArray) {
   });
 }
 
+function fillmodal(ingredients) {
+  let modal = $(".modal-body");
+  modal.empty();
+  console.log(ingredients);
+  let instructionsConteiner = $("<div>");
+  let listOfInstructionsTitle = $("<h3>").text("Instructions");
+  instructionsConteiner.append(listOfInstructionsTitle);
+  if (ingredients.instructions !== undefined) {
+    let recepieSteps = ingredients.instructions;
+    recepieSteps = recepieSteps.split(".");
+    let list = $("<ol>");
+    recepieSteps.forEach(function (instruction) {
+      if (isNaN(instruction)) {
+        let newItem = $("<li>").text(instruction);
+        console.log(newItem);
+        list.append(newItem);
+      }
+    });
+    instructionsConteiner.append(list);
+  } else {
+    instructionsConteiner.text(
+      "Ops, it looks like instructions not available at the moment."
+    );
+  }
+  // console.log(recepieSteps);
+  let listIngredientsTitle = $("<h3>").text("Ingredients");
+  let ingredientList = $("<ol>");
+  if (ingredients.extendedIngredients == undefined) {
+    ingredients.forEach(function (oneOfTheIngredients) {
+      let newIngredientItem = $("<li>").text(oneOfTheIngredients.original);
+      ingredientList.append(newIngredientItem);
+    });
+  } else {
+    ingredients.extendedIngredients.forEach(function (oneOfTheIngredients) {
+      let newIngredientItem = $("<li>").text(oneOfTheIngredients.original);
+      ingredientList.append(newIngredientItem);
+    });
+  }
+
+  modal
+    .append(listIngredientsTitle)
+    .append(ingredientList)
+    .append(instructionsConteiner);
+}
+
 //function to get the ingredients once Show Recipe is clicked
 function getIngredients(recipeID) {
   const settings = {
@@ -225,10 +248,8 @@ function getIngredients(recipeID) {
   $.ajax(settings).done(function (response) {
     // Pass the response to render ingredients and instructions
     console.log(response);
+    fillmodal(response);
   });
-  // add staff to the modal
-  // let instructions = $("<p>");
-  // var instructionsEl = recipeID.instructions;
 }
 
 $("#search-btn").on("click", searchIngredient);
