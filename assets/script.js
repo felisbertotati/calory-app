@@ -1,7 +1,7 @@
 // create localStorage variable to store users last search
 // initial state is "japanese"
-let initialRecepie = localStorage.initialCuisine || "japanese";
-userRecipe(initialRecepie);
+// let initialRecepie = localStorage.initialCuisine || "japanese";
+// userRecipe(initialRecepie);
 
 //event listener when user selects a cuisine from dropdown menu
 $(document).ready(function () {
@@ -104,6 +104,8 @@ function searchIngredient() {
 
 //create cards for ingredients searched by user
 function ingredientsCards(IngredientArray) {
+  let objArray = IngredientArray;
+  console.log(objArray);
   let cardContainer = $(".dishes-display");
   cardContainer.empty();
   // console.log(IngredientArray);
@@ -132,14 +134,85 @@ function ingredientsCards(IngredientArray) {
     let btn = $("<a>")
       .addClass("btn btn-secondary")
       // .attr("href", btnLink)
-      .attr("target", "_blank")
-      .text("Show more");
+
+      .text("Show more")
+      .attr("data-toggle", "modal")
+      .attr("data-target", "#exampleModalCenter");
+
+    //add modal information
+    btn.on("click", function () {
+      let ingredientId = $(this).parent().parent().data("ingredient");
+      console.log(ingredientId);
+      //find object
+      for (let i = 0; i < objArray.length; i++) {
+        if (objArray[i].id == ingredientId) {
+          console.log(objArray[i]);
+
+          // create modal structure
+          let ingredientEl = objArray[i];
+
+          let modalIngredients = $(".modal-body");
+          modalIngredients.empty();
+
+          let ingredientContainer = $("<div>");
+
+          modalIngredients.append(ingredientContainer);
+
+          let foodName = $("<h3>");
+          console.log(ingredientEl.ciqual_food_name_tags[0]);
+          let foodNameEl = ingredientEl.ciqual_food_name_tags[0];
+
+          foodName.text(foodNameEl);
+          ingredientContainer.append(foodName);
+
+          let textIngredients = $("<p>");
+          let textIngredientsEl = ingredientEl.ingredients_text;
+          textIngredients.text(textIngredientsEl);
+
+          ingredientContainer.append(textIngredients);
+
+          let foodGroup = $("<p>");
+          let foodGroupEl = ingredientEl.pnns_groups_2;
+          foodGroup.text("Food Group: " + foodGroupEl);
+
+          ingredientContainer.append(foodGroup);
+
+          let ingredientLevel = $("h4").text("Nutrient levels:");
+          ingredientContainer.append(ingredientLevel);
+
+          let fat = $("<p>");
+          let fatEl = ingredientEl.nutrient_levels.fat;
+          fat.text("Fat: " + fatEl);
+
+          ingredientContainer.append(fat);
+
+          let salt = $("<p>");
+          let saltEl = ingredientEl.nutrient_levels.salt;
+          salt.text("Salt: " + saltEl);
+
+          ingredientContainer.append(salt);
+
+          let sugar = $("<p>");
+          let sugarEl = ingredientEl.nutrient_levels.sugars;
+          sugar.text("Sugar: " + sugarEl);
+
+          ingredientContainer.append(sugar);
+
+          let nutriScore = $("<h5>");
+          let nutriScoreEl = ingredientEl.nutriscore_score;
+          nutriScore.text("Health Score: " + nutriScoreEl);
+
+          ingredientContainer.append(nutriScore);
+        }
+      }
+    });
 
     cardBody.append(title).append(btn);
     card.append(image).append(cardBody);
     column.append(card);
     cardContainer.append(column);
   });
+  console.log(IngredientArray);
 }
 
 // crete cards for each recepie
@@ -184,17 +257,34 @@ function createCards(recepieArray) {
   });
 }
 
+//added recipe in the modal
 function fillmodal(ingredients) {
   let modal = $(".modal-body");
   modal.empty();
   console.log(ingredients);
   let instructionsConteiner = $("<div>");
+
+  modal.append(instructionsConteiner);
+
+  // added food score
+  let foodScore = $("<p>");
+  let foodScoreEl = ingredients.healthScore;
+
+  instructionsConteiner
+    .append(foodScore)
+    .text("Health Score " + foodScoreEl + "%");
+
   let listOfInstructionsTitle = $("<h3>").text("Instructions");
+
   instructionsConteiner.append(listOfInstructionsTitle);
-  if (ingredients.instructions !== undefined) {
+
+  if (ingredients.instructions !== null) {
     let recepieSteps = ingredients.instructions;
+
     recepieSteps = recepieSteps.split(".");
+
     let list = $("<ol>");
+
     recepieSteps.forEach(function (instruction) {
       if (isNaN(instruction)) {
         let newItem = $("<li>").text(instruction);
@@ -223,10 +313,7 @@ function fillmodal(ingredients) {
     });
   }
 
-  modal
-    .append(listIngredientsTitle)
-    .append(ingredientList)
-    .append(instructionsConteiner);
+  modal.append(listIngredientsTitle).append(ingredientList);
 }
 
 //function to get the ingredients once Show Recipe is clicked
