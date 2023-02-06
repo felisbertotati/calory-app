@@ -1,10 +1,12 @@
 /*style body*/
 
+
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Roboto', sans-serif;
 }
 /*added style in navigation bar*/
 .logo-nav {
@@ -12,6 +14,7 @@
   height: 30px;
   margin-left: 20px;
   margin-top: 10px;
+
 }
 
 /*change color of the text in navigation bar*/
@@ -20,8 +23,18 @@
   font-size: 20px;
 }
 /*added flex right to the navigation bar*/
-nav {
+.nav {
+  align-items: center;
+}
+
+.nav-logo {
+  margin: 1rem;
+}
+
+/*nav menu styling*/
+.flex {
   display: flex;
+  gap: var(--gap, 1rem);
   justify-content: space-between;
 }
 
@@ -62,18 +75,25 @@ nav {
   font-size: 20px;
 }
 
+
 .choose-ingredientes {
   color: white;
   text-align: center;
   font-weight: bold;
-  font-size: 30px;
+  /*font-size: 30px;*/
   padding-bottom: 15px;
 }
 
 .input-group {
-  width: 400px;
-  /* height: 40px; */
+  width: 500px;
+  height: 40px;
 }
+
+
+.h2 .input-group-text {
+  font-size: 30px;
+}
+
 
 /*give margin left to the cards so that they will be center*/
 
@@ -87,6 +107,12 @@ nav {
   border-radius: 5px;
   border: rgb(39, 140, 197);
 }
+
+#search-btn:hover {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 .dishes-display {
   padding-left: 100px;
 }
@@ -98,18 +124,12 @@ nav {
   object-fit: contain;
 }
 
-/*footer {
-  /* background-color: rgb(39, 140, 197, 0, 3);
-  height: 100%; */
-/*width: 100%;
-/*} */
-
 /* Footer Section*/
 
 footer {
   /* background-color: rgb(39, 140, 197, 0, 3);
   height: 100%; */
-  background-color: lightgray;
+  background-color: white;
   width: 100%;
   text-align: center;
   padding: 4rem 1rem;
@@ -125,9 +145,16 @@ footer a:hover {
   color: blue;
 }
 
+/*About Us Styling*/
 .container {
   max-width: 1200px margin 0 auto;
 }
+
+.about-us{
+  text-align:justify;
+}
+
+/*About Us Styling Ends*/
 
 .footer-main {
   display: flex;
@@ -141,6 +168,11 @@ footer a:hover {
   text-align: center;
 }
 
+.footer-logo {
+  padding: 10px;
+  margin-left: 20px;
+}
+
 .footer-heading {
   margin-bottom: 1rem;
 }
@@ -151,26 +183,71 @@ footer a:hover {
   padding: 5px 10px;
   margin: 0 auto;
 }
-@media only screen and (max-width: 760px) {
+
+@media only screen and (max-width: 768px) {
+
+.logo-nav {
+  width: 100px;
+  height: 30px;
+  margin-left: 20px;
+  margin-top: 10px;
 }
 
-/* Modal */
-#myModal {
-  background-color: #fff;
-  border: 1px solid #999;
-  border-radius: 10px;
-  box-shadow: 0 0 20px #333;
-  height: 500px;
-  padding: 20px;
-  width: 600px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 999;
+.nav-link {
+  color: black;
+  font-size: 15px;
 }
 
-.close {
-  z-index: 20;
+.discover {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  padding-bottom: 25px;
+}
+
+#select-cuisine {
+  width: 250px;
+  height: 20px;
+  background-color: rgb(255, 255, 255, 0.8);
+  border-radius: 5px;
+  font-size: 10px;
+}
+
+.input-group {
+  padding-top: 10px;
+  width: 250px;
+  height: 20px;
+}
+
+/*Check Ingredients text styling*/
+.choose-ingredientes {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  padding-top: 90px;
+  width: 250px;
+  height: 20px;
+}
+
+#search-btn {
+  color: rgb(39, 140, 197);
+  width: 70px;
+  border-radius: 5px;
+  border: rgb(39, 140, 197);
+}
+
+#search-btn:hover {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+.h2 .input-group-text {
+  font-size: 20px;
+}
+
+
+
 }

@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calorie App</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="./assets/style.css" />
-  </head>
 
-  <body>
-    <nav>
-      <img src="./img/logo calorie2.png" alt="" class="logo-nav" />
-      <ul class="nav justify-content-end">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calorie App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+
+<body>
+  <nav>
+    <!--<div class="navbar">-->
+    <div class="flex">
+      <img class="nav-logo" src="./img/logo calorie2.png" alt="Calorie App Logo" class="logo-nav" />
+      <!--</div>-->
+      <ul class="nav">
         <li class="nav-item">
           <a class="nav-link" href="#">Your Recipes</a>
         </li>
@@ -25,102 +28,82 @@
           <a class="nav-link" href="#about-section">About us</a>
         </li>
       </ul>
-    </nav>
-    <section>
-      <h1 class="d-none">Calorie Search</h1>
-      <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-          <h2 class="discover">
-            Discover your path to nutritious, delicious food.
-          </h2>
-          <div class="card-class-jumb container">
-            <div class="row mx-auto">
-              <div
-                class="card-one d-flex align-items-center card bg-transparent border-0 col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6"
-              >
-                <div class="input-group justify-content-center">
-                  <label class="input-group-text" for="inputGroupSelect01"
-                    >Select Cuisine</label
-                  >
-                  <select class="form-select" id="select-cuisine">
-                    <option selected>Choose...</option>
-                  </select>
-                </div>
+    </div>
+
+  </nav>
+
+  <section>
+    <h1 class="d-none">Calorie Search</h1>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h2 class="discover">
+          Discover your path to nutritious, delicious food.
+        </h2>
+        <div class="card-class-jumb container">
+          <div class="row mx-auto">
+            <div
+              class="card-one d-flex align-items-center card bg-transparent border-0 col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+              <div class="input-group justify-content-center">
+                <label class="input-group-text" for="inputGroupSelect01">Select Cuisine</label>
+                <select class="form-select" id="select-cuisine">
+                  <option selected>Choose...</option>
+                </select>
               </div>
-              <div
-                class="card-2 d-flex align-items-center card bg-transparent border-0 col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6"
-              >
-                <h2 class="choose-ingredientes">Check the Ingredients</h2>
-                <div class="input-group">
-                  <input
-                    id="search-input"
-                    type="text"
-                    class="form-control"
-                    placeholder="Ingredient"
-                    aria-label="Username"
-                    aria-describedby="basic-addon1"
-                  />
-                  <button type="submit" id="search-btn">Search</button>
-                </div>
+            </div>
+            <div
+              class="card-2 d-flex align-items-center card bg-transparent border-0 col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+              <h2 class="choose-ingredientes">Check the Ingredients</h2>
+              <div class="input-group">
+                <input id="search-input" type="text" class="form-control" placeholder="Ingredient" aria-label="Username"
+                  aria-describedby="basic-addon1" />
+                <button type="submit" id="search-btn">Search</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    <div class="row min-vh-30">
-      <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"></div>
     </div>
-    <main>
-      <section>
-        <h2>Recipe:</h2>
+  </section>
+  <div class="row min-vh-30">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"></div>
+  </div>
+  <main>
+    <section>
+      <!-- <h2>Recipe:</h2> -->
 
-        <!-- here it is the dishes, we will do it dynamically -->
-        <div class="dishes-display row"></div>
-        <!-- Vertically centered scrollable modal -->
-        <div
-          class="modal fade"
-          id="exampleModalCenter"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalCenterTitle"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle"></h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">...</div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="button" class="btn btn-primary">
+      <!-- here it is the dishes, we will do it dynamically -->
+      <div class="dishes-display row"></div>
+      <!-- Vertically centered scrollable modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">...</div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+              <!-- <button type="button" class="btn btn-primary">
                   Save changes
-                </button>
-              </div>
+                </button> -->
             </div>
           </div>
         </div>
+      </div>
+      </div>
 
-        <!-- About Us Section -->
-        <section id="about-section">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12 mx-auto text center">
+      <!-- About Us Section -->
+      <section id="about-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 mx-auto text center">
+              <div class="about-us">
                 <h2>About Us</h2>
                 <p>
                   At Calorie, our mission is to empower health-conscious
@@ -141,53 +124,51 @@
               </div>
             </div>
           </div>
-        </section>
-        <!-- About Us Section Ends -->
+        </div>
       </section>
-    </main>
+      <!-- About Us Section Ends -->
+    </section>
+  </main>
 
-    <footer>
-      <div class="container">
-        <div class="footer-main">
-          <div class="footer-column">
-            <h3 class="footer-heading">Our Company</h3>
-            <a href="#" class="footer-link">About</a>
-            <a href="#" class="footer-link">Demo</a>
-            <a href="#" class="footer-link">Investors</a>
-          </div>
+  <footer>
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-column">
+          <h3 class="footer-heading">Company</h3>
+          <a href="#" class="footer-link">About</a>
+          <a href="#" class="footer-link">Demo</a>
+          <a href="#" class="footer-link">Investors</a>
+        </div>
 
-          <div class="footer-column">
-            <img src="./img/logo calorie2.png" alt="Calorie" class="logo-two" />
-          </div>
+        <div class="footer-column footer-logo">
+          <img src="./img/logo calorie2.png" alt="Calorie" class="logo-two" />
+        </div>
 
-          <div class="footer-column">
-            <h3 class="footer-heading">Contact Us</h3>
-            <a href="#" class="footer-link">Careers</a>
-            <a href="#" class="footer-link">Contact</a>
-            <a href="#" class="footer-link">Twitter</a>
-          </div>
+        <div class="footer-column">
+          <h3 class="footer-heading">Contact</h3>
+          <a href="#" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Contact</a>
+          <a href="#" class="footer-link">Twitter</a>
         </div>
       </div>
-    </footer>
+    </div>
+  </footer>
 
-    <!-- Moment.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <!-- Bootstrap JavaScript -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-      crossorigin="anonymous"
-    ></script>
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- My javaScript file -->
-    <!-- <script src="./assets/mock.js"></script> -->
-    <script src="./assets/api.js"></script>
-    <script src="./assets/script.js"></script>
-  </body>
+  <!-- Moment.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- My javaScript file -->
+
+  <script src="./assets/api.js"></script>
+  <script src="./assets/script.js"></script>
+</body>
+
 </html>
