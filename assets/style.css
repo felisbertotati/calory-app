@@ -150,6 +150,47 @@ footer a:hover {
   padding: 5px 10px;
   margin: 0 auto;
 }
-@media screen and (max-width: 760px) {
-  
+
+@media only screen and (max-width: 768px) {
+
+.logo-nav {
+  width: 100px;
+  height: 30px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.discover {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  padding-bottom: 25px;
+}
+
+#select-cuisine {
+  width: 250px;
+  height: 20px;
+  background-color: rgb(255, 255, 255, 0.8);
+  border-radius: 5px;
+  font-size: 10px;
+}
+
+.choose-ingredientes {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+  padding-bottom: 15px;
+  width: 250px;
+  height: 20px;
+}
+
+#search-btn {
+  color: rgb(39, 140, 197);
+  width: 70px;
+  border-radius: 5px;
+  border: rgb(39, 140, 197);
+}
+
 }
