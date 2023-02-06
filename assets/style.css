@@ -1,10 +1,12 @@
 /*style body*/
 
+
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: 'Roboto', sans-serif;;
+  font-family: 'Roboto', sans-serif;
 }
 /*added style in navigation bar*/
 .logo-nav {
@@ -12,6 +14,7 @@
   height: 30px;
   margin-left: 20px;
   margin-top: 10px;
+
 }
 
 /*change color of the text in navigation bar*/
@@ -20,8 +23,18 @@
   font-size: 20px;
 }
 /*added flex right to the navigation bar*/
-nav {
+.nav {
+  align-items: center;
+}
+
+.nav-logo {
+  margin: 1rem;
+}
+
+/*nav menu styling*/
+.flex {
   display: flex;
+  gap: var(--gap, 1rem);
   justify-content: space-between;
 }
 
@@ -62,18 +75,25 @@ nav {
   font-size: 20px;
 }
 
+
 .choose-ingredientes {
   color: white;
   text-align: center;
   font-weight: bold;
-  font-size: 30px;
+  /*font-size: 30px;*/
   padding-bottom: 15px;
 }
 
 .input-group {
-  width: 400px;
-  /* height: 40px; */
+  width: 500px;
+  height: 40px;
 }
+
+
+.h2 .input-group-text {
+  font-size: 30px;
+}
+
 
 /*give margin left to the cards so that they will be center*/
 
@@ -87,6 +107,12 @@ nav {
   border-radius: 5px;
   border: rgb(39, 140, 197);
 }
+
+#search-btn:hover {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 .dishes-display {
   padding-left: 100px;
 }
@@ -119,9 +145,16 @@ footer a:hover {
   color: blue;
 }
 
+/*About Us Styling*/
 .container {
   max-width: 1200px margin 0 auto;
 }
+
+.about-us{
+  text-align:justify;
+}
+
+/*About Us Styling Ends*/
 
 .footer-main {
   display: flex;
@@ -135,7 +168,7 @@ footer a:hover {
   text-align: center;
 }
 
-.logo {
+.footer-logo {
   padding: 10px;
   margin-left: 20px;
 }
@@ -160,6 +193,11 @@ footer a:hover {
   margin-top: 10px;
 }
 
+.nav-link {
+  color: black;
+  font-size: 15px;
+}
+
 .discover {
   color: white;
   text-align: center;
@@ -176,12 +214,19 @@ footer a:hover {
   font-size: 10px;
 }
 
+.input-group {
+  padding-top: 10px;
+  width: 250px;
+  height: 20px;
+}
+
+/*Check Ingredients text styling*/
 .choose-ingredientes {
   color: white;
   text-align: center;
   font-weight: bold;
-  font-size: 15px;
-  padding-bottom: 15px;
+  font-size: 25px;
+  padding-top: 90px;
   width: 250px;
   height: 20px;
 }
@@ -192,5 +237,17 @@ footer a:hover {
   border-radius: 5px;
   border: rgb(39, 140, 197);
 }
+
+#search-btn:hover {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+.h2 .input-group-text {
+  font-size: 20px;
+}
+
+
 
 }
