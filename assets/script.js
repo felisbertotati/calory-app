@@ -1,8 +1,8 @@
 // create localStorage variable to store users last search
 // initial state is "japanese"
 //local storage
-let lastSearch = JSON.parse(localStorage.getItem("search")) || [];
-// userRecipe(initialRecepie);
+let lastSearch = localStorage.search || "";
+searchIngredient(lastSearch);
 
 //event listener when user selects a cuisine from dropdown menu
 $(document).ready(function () {
@@ -90,10 +90,9 @@ cuisineOptions.forEach(function (cuisine) {
 // }
 
 // open food facts Api added in the search ingredient input
-function searchIngredient() {
-  var userInput = $("#search-input").val();
+function searchIngredient(searchValue) {
   $.ajax({
-    url: `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${userInput}&search_simple=1&action=process&json=1`,
+    url: `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchValue}&search_simple=1&action=process&json=1`,
     method: "GET",
     success: function (data) {
       var IngredientArray = data.products;
@@ -339,8 +338,6 @@ function fillmodal(ingredients) {
 //   });
 // }
 
-$("#search-btn").on("click", searchIngredient);
-
 // Search works on Enter button key Up
 $("#search-input").on("keyup", function (e) {
   if (e.keyCode === 13) {
@@ -395,9 +392,8 @@ $(function () {
 
 $("#search-btn").click(function () {
   const searchValue = $("#search-input").val();
-  var local = lastSearch;
-  local.push(searchValue);
-  localStorage.setItem("search", JSON.stringify(local));
+  localStorage.search = searchValue;
+  searchIngredient(searchValue);
 });
 
 // $(function () {
