@@ -349,7 +349,7 @@ $("#search-input").on("keyup", function (e) {
 // var lastSearch = storedSearch ? JSON.parse(storedSearch) : [];
 console.log(lastSearch);
 $(function () {
-  $("#automplete-1").autocomplete({
+  $("#search-input").autocomplete({
     source: lastSearch,
   });
 });
