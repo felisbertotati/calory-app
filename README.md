@@ -1,4 +1,4 @@
-# Calorie
+# Calorie: Healthy food app using server-side API's
 
 ## USER STORY
 
