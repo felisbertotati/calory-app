@@ -1,6 +1,7 @@
 // create localStorage variable to store users last search
 // initial state is "japanese"
-// let initialRecepie = localStorage.initialCuisine || "japanese";
+//local storage
+let lastSearch = JSON.parse(localStorage.getItem("search")) || [];
 // userRecipe(initialRecepie);
 
 //event listener when user selects a cuisine from dropdown menu
@@ -348,3 +349,106 @@ $("#search-input").on("keyup", function (e) {
     $("#search-btn").click();
   }
 });
+
+//will show last user views
+$(function () {
+  // Retrieve the stored search values from local storage
+  // var storedSearch = localStorage.getItem("search");
+  // // If there are stored search values, set lastSearch to the stored values
+  // var lastSearch = storedSearch ? JSON.parse(storedSearch) : [];
+
+  $.widget("custom.catcomplete", $.ui.autocomplete, {
+    _create: function () {
+      this._super();
+      this.widget().menu(
+        "option",
+        "items",
+        "> :not(.ui-autocomplete-category)"
+      );
+    },
+    _renderMenu: function (ul, items) {
+      var that = this,
+        currentCategory = "";
+      $.each(items, function (index, item) {
+        var li;
+        if (item.category != currentCategory) {
+          ul.append(
+            "<li class='ui-autocomplete-category'>" + item.category + "</li>"
+          );
+          currentCategory = item.category;
+        }
+        li = that._renderItemData(ul, item);
+        if (item.category) {
+          li.attr("aria-label", item.category + " : " + item.label);
+        }
+      });
+    },
+  });
+  var data = lastSearch;
+
+  $("#search-input").catcomplete({
+    delay: 0,
+    source: data,
+  });
+});
+
+//var local;
+
+$("#search-btn").click(function () {
+  const searchValue = $("#search-input").val();
+  var local = lastSearch;
+  local.push(searchValue);
+  localStorage.setItem("search", JSON.stringify(local));
+});
+
+// $(function () {
+//   // Retrieve the stored search values from local storage
+//   var storedSearch = localStorage.getItem("search");
+
+//   // If there are stored search values, set lastSearch to the stored values
+//   var lastSearch = storedSearch ? JSON.parse(storedSearch) : [];
+
+//   $.widget("custom.catcomplete", $.ui.autocomplete, {
+//     _create: function () {
+//       this._super();
+//       this.widget().menu(
+//         "option",
+//         "items",
+//         "> :not(.ui-autocomplete-category)"
+//       );
+//     },
+//     _renderMenu: function (ul, items) {
+//       var that = this,
+//         currentCategory = "";
+//       $.each(items, function (index, item) {
+//         var li;
+//         if (item.category != currentCategory) {
+//           ul.append(
+//             "<li class='ui-autocomplete-category'>" + item.category + "</li>"
+//           );
+//           currentCategory = item.category;
+//         }
+//         li = that._renderItemData(ul, item);
+//         if (item.category) {
+//           li.attr("aria-label", item.category + " : " + item.label);
+//         }
+//       });
+//     },
+//   });
+//   var data = lastSearch;
+
+//   $("#search-input").catcomplete({
+//     delay: 0,
+//     source: data,
+//   });
+// });
+
+// $("#search-btn").click(function () {
+//   const searchValue = $("#search-input").val();
+
+//   // Add the new search value to the array
+//   lastSearch.push(searchValue);
+
+//   // Store the updated array in local storage
+//   localStorage.setItem("search", JSON.stringify(lastSearch));
+// });
