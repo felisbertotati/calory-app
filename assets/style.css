@@ -151,6 +151,21 @@
   text-align:justify;
 }
 
+/*modal styling starts*/
+.modal-header {
+  background-color: rgb(217, 198, 241);
+}
+
+.modal-body {
+  background-color: rgb(217, 198, 241);
+}
+
+
+
+.modal-footer {
+  background-color: rgb(217, 198, 241);
+}
+/*modal styling ends*/
 
 /*About Us Styling Ends*/
 
@@ -182,7 +197,7 @@
 }
 
 .discover {
-  color: white;
+  color: black;
   text-align: center;
   font-weight: bold;
   font-size: 25px;
@@ -206,7 +221,7 @@
 
 /*Check Ingredients text styling*/
 .choose-ingredientes {
-  color: white;
+  color: black;
   text-align: center;
   font-weight: bold;
   font-size: 25px;
@@ -238,7 +253,7 @@
 
 /*Check Ingredients text styling*/
 .choose-ingredientes {
-  color: white;
+  color: black;
   text-align: center;
   font-weight: bold;
   font-size: 25px;
