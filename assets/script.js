@@ -106,7 +106,7 @@ function searchIngredient() {
 //create cards for ingredients searched by user
 function ingredientsCards(IngredientArray) {
   let objArray = IngredientArray;
-  console.log(objArray);
+  // console.log(objArray);
   let cardContainer = $(".dishes-display");
   cardContainer.empty();
   // console.log(IngredientArray);
@@ -143,7 +143,7 @@ function ingredientsCards(IngredientArray) {
     //add modal information
     btn.on("click", function () {
       let ingredientId = $(this).parent().parent().data("ingredient");
-      console.log(ingredientId);
+      // console.log(ingredientId);
       //find object
       for (let i = 0; i < objArray.length; i++) {
         if (objArray[i].id == ingredientId) {
@@ -199,11 +199,10 @@ function ingredientsCards(IngredientArray) {
 
           ingredientContainer.append(sugar);
 
-          let nutriScore = $("<h5>");
+          //moved health-score to head of modal
+          let nutriScore = $(".modal-header");
           let nutriScoreEl = ingredientEl.nutriscore_score;
           nutriScore.text("Health Score: " + nutriScoreEl);
-
-          ingredientContainer.append(nutriScore);
         }
       }
     });
@@ -267,13 +266,11 @@ function fillmodal(ingredients) {
 
   modal.append(instructionsConteiner);
 
-  // added food score
-  let foodScore = $("<p>");
+  // added food score (I made the health score as header to make it bigger)
+  let modalHeader = $(".modal-header");
   let foodScoreEl = ingredients.healthScore;
 
-  instructionsConteiner
-    .append(foodScore)
-    .text("Health Score " + foodScoreEl + "%");
+  modalHeader.text("Health Score: " + foodScoreEl + "%");
 
   let listOfInstructionsTitle = $("<h3>").text("Instructions");
 
@@ -289,14 +286,14 @@ function fillmodal(ingredients) {
     recepieSteps.forEach(function (instruction) {
       if (isNaN(instruction)) {
         let newItem = $("<li>").text(instruction);
-        console.log(newItem);
+        // console.log(newItem);
         list.append(newItem);
       }
     });
     instructionsConteiner.append(list);
   } else {
     instructionsConteiner.text(
-      "Ops, it looks like instructions not available at the moment."
+      "Oops! It looks like instructions not available at the moment."
     );
   }
   // console.log(recepieSteps);
