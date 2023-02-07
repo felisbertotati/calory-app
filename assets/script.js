@@ -1,8 +1,7 @@
 // create localStorage variable to store users last search
 // initial state is "japanese"
 //local storage
-let lastSearch = localStorage.search || "";
-searchIngredient(lastSearch);
+let lastSearch = localStorage.search ? JSON.parse(localStorage.search) : [];
 
 //event listener when user selects a cuisine from dropdown menu
 $(document).ready(function () {
@@ -54,40 +53,40 @@ cuisineOptions.forEach(function (cuisine) {
 });
 // End of drop down menu
 
-// function to run depending on the cuisine selected
-function userRecipe(selectedRecipe) {
-  // Add last user choice to localStorage
-  localStorage.initialCuisine = selectedRecipe;
-  const settings = {
-    async: true,
-    crossDomain: true,
-    url:
-      "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?" +
-      "query=" +
-      selectedRecipe +
-      "&" +
-      "cuisine=" +
-      selectedRecipe +
-      "& includeIngredients=" +
-      "& addRecipeInformation=true7741573ef1mshbe8aa22a9c85ee2p1b9a2cjsn22f4bd06bdf0" +
-      "& sort=calories" +
-      "& sortDirection=asc" +
-      "& minCalories=50" +  
-      "& maxCalories=800",
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": keyAPI,
-      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-    },
-  };
-  // API request
-  $.ajax(settings).done(function (response) {
-    //select results from request and put them into variable
-    var recipeID = response.results;
-    createCards(recipeID);
-    //console.log(response);
-  });
-}
+// // function to run depending on the cuisine selected
+// function userRecipe(selectedRecipe) {
+//   // Add last user choice to localStorage
+//   localStorage.initialCuisine = selectedRecipe;
+//   const settings = {
+//     async: true,
+//     crossDomain: true,
+//     url:
+//       "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?" +
+//       "query=" +
+//       selectedRecipe +
+//       "&" +
+//       "cuisine=" +
+//       selectedRecipe +
+//       "& includeIngredients=" +
+//       "& addRecipeInformation=true7741573ef1mshbe8aa22a9c85ee2p1b9a2cjsn22f4bd06bdf0" +
+//       "& sort=calories" +
+//       "& sortDirection=asc" +
+//       "& minCalories=50" +
+//       "& maxCalories=800",
+//     method: "GET",
+//     headers: {
+//       "X-RapidAPI-Key": keyAPI,
+//       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+//     },
+//   };
+//   // API request
+//   $.ajax(settings).done(function (response) {
+//     //select results from request and put them into variable
+//     var recipeID = response.results;
+//     createCards(recipeID);
+//     //console.log(response);
+//   });
+// }
 
 // open food facts Api added in the search ingredient input
 function searchIngredient(searchValue) {
@@ -344,52 +343,24 @@ $("#search-input").on("keyup", function (e) {
 });
 
 //will show last user views
+// Retrieve the stored search values from local storage
+// var storedSearch = localStorage.getItem("search");
+// // If there are stored search values, set lastSearch to the stored values
+// var lastSearch = storedSearch ? JSON.parse(storedSearch) : [];
+console.log(lastSearch);
 $(function () {
-  // Retrieve the stored search values from local storage
-  // var storedSearch = localStorage.getItem("search");
-  // // If there are stored search values, set lastSearch to the stored values
-  // var lastSearch = storedSearch ? JSON.parse(storedSearch) : [];
-
-  $.widget("custom.catcomplete", $.ui.autocomplete, {
-    _create: function () {
-      this._super();
-      this.widget().menu(
-        "option",
-        "items",
-        "> :not(.ui-autocomplete-category)"
-      );
-    },
-    _renderMenu: function (ul, items) {
-      var that = this,
-        currentCategory = "";
-      $.each(items, function (index, item) {
-        var li;
-        if (item.category != currentCategory) {
-          ul.append(
-            "<li class='ui-autocomplete-category'>" + item.category + "</li>"
-          );
-          currentCategory = item.category;
-        }
-        li = that._renderItemData(ul, item);
-        if (item.category) {
-          li.attr("aria-label", item.category + " : " + item.label);
-        }
-      });
-    },
-  });
-  var data = lastSearch;
-
-  $("#search-input").catcomplete({
-    delay: 0,
-    source: data,
+  $("#search-input").autocomplete({
+    source: lastSearch,
   });
 });
-
 //var local;
 
 $("#search-btn").click(function () {
   const searchValue = $("#search-input").val();
-  localStorage.search = searchValue;
+  if (!lastSearch.includes(searchValue)) {
+    lastSearch.push(searchValue);
+  }
+  localStorage.search = JSON.stringify(lastSearch);
   searchIngredient(searchValue);
 });
 
