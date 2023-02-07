@@ -1,8 +1,7 @@
 // create localStorage variable to store users last search
 // initial state is "japanese"
 //local storage
-let lastSearch = localStorage.search || "";
-searchIngredient(lastSearch);
+let lastSearch = localStorage.search ? JSON.parse(localStorage.search) : [];
 
 //event listener when user selects a cuisine from dropdown menu
 $(document).ready(function () {
@@ -344,52 +343,19 @@ $("#search-input").on("keyup", function (e) {
 });
 
 //will show last user views
-$(function () {
   // Retrieve the stored search values from local storage
   // var storedSearch = localStorage.getItem("search");
   // // If there are stored search values, set lastSearch to the stored values
   // var lastSearch = storedSearch ? JSON.parse(storedSearch) : [];
 
-  $.widget("custom.catcomplete", $.ui.autocomplete, {
-    _create: function () {
-      this._super();
-      this.widget().menu(
-        "option",
-        "items",
-        "> :not(.ui-autocomplete-category)"
-      );
-    },
-    _renderMenu: function (ul, items) {
-      var that = this,
-        currentCategory = "";
-      $.each(items, function (index, item) {
-        var li;
-        if (item.category != currentCategory) {
-          ul.append(
-            "<li class='ui-autocomplete-category'>" + item.category + "</li>"
-          );
-          currentCategory = item.category;
-        }
-        li = that._renderItemData(ul, item);
-        if (item.category) {
-          li.attr("aria-label", item.category + " : " + item.label);
-        }
-      });
-    },
-  });
-  var data = lastSearch;
+ $("#search-input").autocomplete(lastSearch);
 
-  $("#search-input").catcomplete({
-    delay: 0,
-    source: data,
-  });
-});
 
 //var local;
 
 $("#search-btn").click(function () {
   const searchValue = $("#search-input").val();
-  localStorage.search = searchValue;
+  localStorage.search = JSON.stringify(lastSearch.push(searchValue));
   searchIngredient(searchValue);
 });
 
