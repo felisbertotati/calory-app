@@ -349,11 +349,7 @@ $("#search-input").on("keyup", function (e) {
   // var lastSearch = storedSearch ? JSON.parse(storedSearch) : [];
 
  $("#search-input").autocomplete(lastSearch);
-//   $("#search-input").catcomplete({
-//     delay: 0,
-//     source: lastSearch,
-//   });
-// });
+
 
 //var local;
 
