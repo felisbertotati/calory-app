@@ -1,13 +1,14 @@
 /*style body*/
 
-
-
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-family: 'Roboto', sans-serif;
 }
+
+/*NAV BAR AND MENU STYLING BEGINS*/
+
 /*added style in navigation bar*/
 .logo-nav {
   width: 150px;
@@ -33,6 +34,8 @@
   justify-content: space-between;
   background-color: rgb(217, 198, 241);
 }
+
+/*NAV BAR AND MENU STYLING ENDS*/
 
 /*style jumbotron*/
 
@@ -120,84 +123,41 @@
   object-fit: contain;
 }
 
-/* Footer Section*/
 
-footer {
-  /* background-color: rgb(39, 140, 197, 0, 3);
-  height: 100%; */
-  background-color: rgb(217, 198, 241);
-  width: 100%;
-  text-align: center;
-  padding: 4rem 1rem;
-}
-
-footer a {
-  color: black;
-  text-decoration: none;
-  transition: color 0.1s;
-}
-
-footer a:hover {
-  color: rgb(217, 198, 241);
-}
- 
-
-/*About Us Styling*/
 .container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
+
 .about-us{
   text-align:justify;
 }
 
+
 /*About Us Styling Ends*/
 
-.footer-main {
+
+/*FOOTER STYLING BEGINS*/
+.footer-flex {
   display: flex;
-  margin-bottom: 4rem;
-}
-
-/*added so they all extend to the same size*/
-.footer-column {
-  flex-basis: 200px;
-  flex-grow: 1;
-  text-align: center;
-}
-
-.footer-logo {
-  flex-basis: 200px;
-  flex-grow: 1;
-  padding: 10px;
-  margin-left: 20px;
-}
-
-.footer-heading {
-  margin-bottom: 1rem;
-}
-
-.footer-link {
-  display: block;
-  width: max-content;
-  padding: 5px 10px;
-  margin: 0 auto;
-}
-
-.footer-container {
-
+  gap: var(--gap, 1rem);
   justify-content: space-between;
   background-color: rgb(217, 198, 241);
 }
+
+
+/*FOOTER STYLING ENDS*/
 
 @media only screen and (max-width: 768px) {
 
 .logo-nav {
   width: 100px;
-  height: 30px;
+  height: 45px;
   margin-left: 20px;
   margin-top: 10px;
 }
+
 
 .nav-link {
   color: black;
@@ -208,7 +168,7 @@ footer a:hover {
   color: white;
   text-align: center;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
   padding-bottom: 25px;
 }
 
@@ -253,18 +213,22 @@ footer a:hover {
 .h2 .input-group-text {
   font-size: 20px;
 }
+}
 
-.footer-column {
-  flex-basis: 100px;
-  flex-grow: 1;
+@media only screen and (max-width: 1180px) {
+
+  
+
+/*Check Ingredients text styling*/
+.choose-ingredientes {
+  color: white;
   text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  padding-top: 90px;
+  width: 250px;
+  height: 120px;
 }
 
-.footer-logo {
-  flex-basis: 200px;
-  flex-grow: 1;
-  padding: 5px;
-  margin-left: 10px;
-}
 
 }
