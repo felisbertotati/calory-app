@@ -65,6 +65,7 @@
 
 .discover:hover {
   color: white;
+  text-shadow: 2px 2px black;
 }
 
 .input-group-text {
@@ -77,6 +78,7 @@
 
 .input-group-text:hover {
   color: white;
+  text-shadow: 2px 2px black;
 }
 
 #select-cuisine {
@@ -98,6 +100,7 @@
 
 .choose-ingredientes:hover {
   color: white;
+  text-shadow: 2px 2px black;
 }
 
 .input-group {
