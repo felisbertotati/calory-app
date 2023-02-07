@@ -22,6 +22,11 @@
   color: black;
   font-size: 20px;
 }
+
+.nav-link:hover{
+  color: white;
+}
+
 /*added flex right to the navigation bar*/
 .nav {
   align-items: center;
@@ -51,19 +56,27 @@
 
 /*style text h2 in jumbotron*/
 .discover {
-  color: white;
+  color: black;
   text-align: center;
   font-weight: bold;
   font-size: 40px;
   padding-bottom: 50px;
 }
 
+.discover:hover{
+  color: white;
+}
+
 .input-group-text {
   background-color: transparent;
   border: none;
-  color: white;
+  color: black;
   font-size: 30px;
   font-weight: bold;
+}
+
+.input-group-text:hover{
+  color: white;
 }
 
 #select-cuisine {
@@ -76,11 +89,15 @@
 
 
 .choose-ingredientes {
-  color: white;
+  color: black;
   text-align: center;
   font-weight: bold;
   /*font-size: 30px;*/
   padding-bottom: 15px;
+}
+
+.choose-ingredientes:hover{
+  color: white;
 }
 
 .input-group {
@@ -101,7 +118,7 @@
   border-radius: 5px;
 }
 #search-btn {
-  color: rgb(217, 198, 241);
+  color: black;
   width: 70px;
   border-radius: 5px;
   border: rgb(217, 198, 241);
