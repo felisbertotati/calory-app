@@ -1,8 +1,8 @@
 // create localStorage variable to store users last search
 // initial state is "japanese"
 //local storage
-let lastSearch = JSON.parse(localStorage.getItem("search")) || [];
-// userRecipe(initialRecepie);
+let lastSearch = localStorage.search || "";
+searchIngredient(lastSearch);
 
 //event listener when user selects a cuisine from dropdown menu
 $(document).ready(function () {
@@ -55,46 +55,44 @@ cuisineOptions.forEach(function (cuisine) {
 // End of drop down menu
 
 // // function to run depending on the cuisine selected
-function userRecipe(selectedRecipe) {
-  // Add last user choice to localStorage
-  localStorage.initialCuisine = selectedRecipe;
-  const settings = {
-    async: true,
-    crossDomain: true,
-    url:
-      "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?" +
-      "query=" +
-      selectedRecipe +
-      "&" +
-      "cuisine=" +
-      selectedRecipe +
-      "& includeIngredients=" +
-      "& addRecipeInformation=true7741573ef1mshbe8aa22a9c85ee2p1b9a2cjsn22f4bd06bdf0" +
-      "& sort=calories" +
-      "& sortDirection=asc" +
-      "& minCalories=50" +
-      "& maxCalories=800",
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": keyAPI,
-      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-    },
-  };
-
-  // API request
-  $.ajax(settings).done(function (response) {
-    //select results from request and put them into variable
-    var recipeID = response.results;
-    createCards(recipeID);
-    //console.log(response);
-  });
-}
+// function userRecipe(selectedRecipe) {
+//   // Add last user choice to localStorage
+//   localStorage.initialCuisine = selectedRecipe;
+//   const settings = {
+//     async: true,
+//     crossDomain: true,
+//     url:
+//       "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?" +
+//       "query=" +
+//       selectedRecipe +
+//       "&" +
+//       "cuisine=" +
+//       selectedRecipe +
+//       "& includeIngredients=" +
+//       "& addRecipeInformation=true7741573ef1mshbe8aa22a9c85ee2p1b9a2cjsn22f4bd06bdf0" +
+//       "& sort=calories" +
+//       "& sortDirection=asc" +
+//       "& minCalories=50" +  
+//       "& maxCalories=800",
+//     method: "GET",
+//     headers: {
+//       "X-RapidAPI-Key": keyAPI,
+//       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+//     },
+//   };
+//   // API request
+//   $.ajax(settings).done(function (response) {
+//     //select results from request and put them into variable
+//     var recipeID = response.results;
+//     createCards(recipeID);
+//     //console.log(response);
+//   });
+// }
 
 // open food facts Api added in the search ingredient input
-function searchIngredient() {
-  var userInput = $("#search-input").val();
+function searchIngredient(searchValue) {
   $.ajax({
-    url: `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${userInput}&search_simple=1&action=process&json=1`,
+    url: `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchValue}&search_simple=1&action=process&json=1`,
     method: "GET",
     success: function (data) {
       var IngredientArray = data.products;
@@ -106,7 +104,7 @@ function searchIngredient() {
 //create cards for ingredients searched by user
 function ingredientsCards(IngredientArray) {
   let objArray = IngredientArray;
-  console.log(objArray);
+  // console.log(objArray);
   let cardContainer = $(".dishes-display");
   cardContainer.empty();
   // console.log(IngredientArray);
@@ -143,7 +141,7 @@ function ingredientsCards(IngredientArray) {
     //add modal information
     btn.on("click", function () {
       let ingredientId = $(this).parent().parent().data("ingredient");
-      console.log(ingredientId);
+      // console.log(ingredientId);
       //find object
       for (let i = 0; i < objArray.length; i++) {
         if (objArray[i].id == ingredientId) {
@@ -199,11 +197,10 @@ function ingredientsCards(IngredientArray) {
 
           ingredientContainer.append(sugar);
 
-          let nutriScore = $("<h5>");
+          //moved health-score to head of modal
+          let nutriScore = $(".modal-header");
           let nutriScoreEl = ingredientEl.nutriscore_score;
           nutriScore.text("Health Score: " + nutriScoreEl);
-
-          ingredientContainer.append(nutriScore);
         }
       }
     });
@@ -267,13 +264,11 @@ function fillmodal(ingredients) {
 
   modal.append(instructionsConteiner);
 
-  // added food score
-  let foodScore = $("<p>");
+  // added food score (I made the health score as header to make it bigger)
+  let modalHeader = $(".modal-header");
   let foodScoreEl = ingredients.healthScore;
 
-  instructionsConteiner
-    .append(foodScore)
-    .text("Health Score " + foodScoreEl + "%");
+  modalHeader.text("Health Score: " + foodScoreEl + "%");
 
   let listOfInstructionsTitle = $("<h3>").text("Instructions");
 
@@ -289,14 +284,14 @@ function fillmodal(ingredients) {
     recepieSteps.forEach(function (instruction) {
       if (isNaN(instruction)) {
         let newItem = $("<li>").text(instruction);
-        console.log(newItem);
+        // console.log(newItem);
         list.append(newItem);
       }
     });
     instructionsConteiner.append(list);
   } else {
     instructionsConteiner.text(
-      "Ops, it looks like instructions not available at the moment."
+      "Oops! It looks like instructions not available at the moment."
     );
   }
   // console.log(recepieSteps);
@@ -318,29 +313,27 @@ function fillmodal(ingredients) {
 }
 
 //function to get the ingredients once Show Recipe is clicked
-function getIngredients(recipeID) {
-  const settings = {
-    async: true,
-    crossDomain: true,
-    url:
-      "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" +
-      recipeID +
-      "/information",
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": keyAPI,
-      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-    },
-  };
+// function getIngredients(recipeID) {
+//   const settings = {
+//     async: true,
+//     crossDomain: true,
+//     url:
+//       "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" +
+//       recipeID +
+//       "/information",
+//     method: "GET",
+//     headers: {
+//       "X-RapidAPI-Key": keyAPI,
+//       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+//     },
+//   };
 
-  $.ajax(settings).done(function (response) {
-    // Pass the response to render ingredients and instructions
-    console.log(response);
-    fillmodal(response);
-  });
-}
-
-$("#search-btn").on("click", searchIngredient);
+//   $.ajax(settings).done(function (response) {
+//     // Pass the response to render ingredients and instructions
+//     console.log(response);
+//     fillmodal(response);
+//   });
+// }
 
 // Search works on Enter button key Up
 $("#search-input").on("keyup", function (e) {
@@ -396,9 +389,8 @@ $(function () {
 
 $("#search-btn").click(function () {
   const searchValue = $("#search-input").val();
-  var local = lastSearch;
-  local.push(searchValue);
-  localStorage.setItem("search", JSON.stringify(local));
+  localStorage.search = searchValue;
+  searchIngredient(searchValue);
 });
 
 // $(function () {
