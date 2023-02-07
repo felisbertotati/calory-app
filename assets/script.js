@@ -71,7 +71,7 @@ cuisineOptions.forEach(function (cuisine) {
 //       "& addRecipeInformation=true7741573ef1mshbe8aa22a9c85ee2p1b9a2cjsn22f4bd06bdf0" +
 //       "& sort=calories" +
 //       "& sortDirection=asc" +
-//       "& minCalories=50" +  
+//       "& minCalories=50" +
 //       "& maxCalories=800",
 //     method: "GET",
 //     headers: {
@@ -343,19 +343,24 @@ $("#search-input").on("keyup", function (e) {
 });
 
 //will show last user views
-  // Retrieve the stored search values from local storage
-  // var storedSearch = localStorage.getItem("search");
-  // // If there are stored search values, set lastSearch to the stored values
-  // var lastSearch = storedSearch ? JSON.parse(storedSearch) : [];
-
- $("#search-input").autocomplete(lastSearch);
-
-
+// Retrieve the stored search values from local storage
+// var storedSearch = localStorage.getItem("search");
+// // If there are stored search values, set lastSearch to the stored values
+// var lastSearch = storedSearch ? JSON.parse(storedSearch) : [];
+console.log(lastSearch);
+$(function () {
+  $("#automplete-1").autocomplete({
+    source: lastSearch,
+  });
+});
 //var local;
 
 $("#search-btn").click(function () {
   const searchValue = $("#search-input").val();
-  localStorage.search = JSON.stringify(lastSearch.push(searchValue));
+  if (!lastSearch.includes(searchValue)) {
+    lastSearch.push(searchValue);
+  }
+  localStorage.search = JSON.stringify(lastSearch);
   searchIngredient(searchValue);
 });
 
