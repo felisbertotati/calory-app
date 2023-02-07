@@ -1,6 +1,5 @@
 // create localStorage variable to store users last search
-// initial state is "japanese"
-//local storage
+
 let lastSearch = localStorage.search ? JSON.parse(localStorage.search) : [];
 
 //event listener when user selects a cuisine from dropdown menu
@@ -126,8 +125,7 @@ function ingredientsCards(IngredientArray) {
     let title = $("<h5>")
       .addClass("card-title")
       .text(IngredientArray.product_name + "-" + brand);
-    // let btnLink =
-    //   "https://world.openfoodfacts.org/product/" + IngredientArray.id;
+
     //when user clicks Show more, it will redirect them to openfacts for more info
     let btn = $("<a>")
       .addClass("btn btn-secondary")
@@ -342,18 +340,15 @@ $("#search-input").on("keyup", function (e) {
   }
 });
 
-//will show last user views
-// Retrieve the stored search values from local storage
-// var storedSearch = localStorage.getItem("search");
-// // If there are stored search values, set lastSearch to the stored values
-// var lastSearch = storedSearch ? JSON.parse(storedSearch) : [];
+//will show last user views in the search bar
 console.log(lastSearch);
 $(function () {
   $("#search-input").autocomplete({
     source: lastSearch,
   });
 });
-//var local;
+
+// will save the results in the local storage
 
 $("#search-btn").click(function () {
   const searchValue = $("#search-input").val();
@@ -363,55 +358,3 @@ $("#search-btn").click(function () {
   localStorage.search = JSON.stringify(lastSearch);
   searchIngredient(searchValue);
 });
-
-// $(function () {
-//   // Retrieve the stored search values from local storage
-//   var storedSearch = localStorage.getItem("search");
-
-//   // If there are stored search values, set lastSearch to the stored values
-//   var lastSearch = storedSearch ? JSON.parse(storedSearch) : [];
-
-//   $.widget("custom.catcomplete", $.ui.autocomplete, {
-//     _create: function () {
-//       this._super();
-//       this.widget().menu(
-//         "option",
-//         "items",
-//         "> :not(.ui-autocomplete-category)"
-//       );
-//     },
-//     _renderMenu: function (ul, items) {
-//       var that = this,
-//         currentCategory = "";
-//       $.each(items, function (index, item) {
-//         var li;
-//         if (item.category != currentCategory) {
-//           ul.append(
-//             "<li class='ui-autocomplete-category'>" + item.category + "</li>"
-//           );
-//           currentCategory = item.category;
-//         }
-//         li = that._renderItemData(ul, item);
-//         if (item.category) {
-//           li.attr("aria-label", item.category + " : " + item.label);
-//         }
-//       });
-//     },
-//   });
-//   var data = lastSearch;
-
-//   $("#search-input").catcomplete({
-//     delay: 0,
-//     source: data,
-//   });
-// });
-
-// $("#search-btn").click(function () {
-//   const searchValue = $("#search-input").val();
-
-//   // Add the new search value to the array
-//   lastSearch.push(searchValue);
-
-//   // Store the updated array in local storage
-//   localStorage.setItem("search", JSON.stringify(lastSearch));
-// });
