@@ -23,7 +23,7 @@
   font-size: 20px;
 }
 
-.nav-link:hover{
+.nav-link:hover {
   color: white;
 }
 
@@ -63,7 +63,7 @@
   padding-bottom: 50px;
 }
 
-.discover:hover{
+.discover:hover {
   color: white;
 }
 
@@ -75,7 +75,7 @@
   font-weight: bold;
 }
 
-.input-group-text:hover{
+.input-group-text:hover {
   color: white;
 }
 
@@ -96,7 +96,7 @@
   padding-bottom: 15px;
 }
 
-.choose-ingredientes:hover{
+.choose-ingredientes:hover {
   color: white;
 }
 
@@ -117,6 +117,7 @@
   background-color: rgb(255, 255, 255, 0.8);
   border-radius: 5px;
 }
+
 #search-btn {
   color: black;
   width: 70px;
@@ -147,8 +148,8 @@
 }
 
 
-.about-us{
-  text-align:justify;
+.about-us {
+  text-align: justify;
 }
 
 /*modal styling starts*/
@@ -183,19 +184,71 @@
 
 @media only screen and (max-width: 768px) {
 
-.logo-nav {
-  width: 100px;
-  height: 45px;
-  margin-left: 20px;
-  margin-top: 10px;
+  .logo-nav {
+    width: 100px;
+    height: 45px;
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+
+
+  .nav-link {
+    color: black;
+    font-size: 15px;
+  }
+
+  .discover {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    padding-bottom: 25px;
+  }
+
+  /*styles cuisine form*/
+  #select-cuisine {
+    width: 250px;
+    height: 30px;
+    background-color: rgb(255, 255, 255, 0.8);
+    border-radius: 5px;
+    font-size: 10px;
+  }
+
+  .input-group {
+    padding-top: 10px;
+    width: 250px;
+    height: 20px;
+  }
+
+  /*Check Ingredients text styling*/
+  .choose-ingredientes {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    padding-top: 90px;
+    width: 250px;
+    height: 20px;
+  }
+
+  #search-btn {
+    color: rgb(39, 140, 197);
+    width: 70px;
+    border-radius: 5px;
+    border: rgb(39, 140, 197);
+  }
+
+  #search-btn:hover {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+  .h2 .input-group-text {
+    font-size: 20px;
+  }
 }
 
-
-.nav-link {
-  color: black;
-  font-size: 15px;
-}
-
+<<<<<<< HEAD
 .discover {
   color: black;
   text-align: center;
@@ -246,17 +299,24 @@
   font-size: 20px;
 }
 }
+=======
+>>>>>>> 26a28947dd635c12248101c847a9232c50665db7
 /* modal style to fit contents inside modal */
 .modal-header {
   font-size: 25px !important;
 }
 
-
+.modal-body {
+  padding-left: 2rem !important;
+}
+li::marker {
+  font-weight: bold !important;
+}
 
 @media only screen and (max-width: 1180px) {
 
-  
 
+<<<<<<< HEAD
 /*Check Ingredients text styling*/
 .choose-ingredientes {
   color: black;
@@ -267,6 +327,18 @@
   width: 250px;
   height: 120px;
 }
+=======
+  /*Check Ingredients text styling*/
+  .choose-ingredientes {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    padding-top: 90px;
+    width: 250px;
+    height: 120px;
+  }
+>>>>>>> 26a28947dd635c12248101c847a9232c50665db7
 
 
 }
