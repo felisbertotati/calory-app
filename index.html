@@ -56,10 +56,11 @@
               <div
                 class="card-one d-flex align-items-center card bg-transparent border-0 col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6"
               >
-                <div class="input-group justify-content-center">
-                  <label class="input-group-text" for="inputGroupSelect01"
+               <label class="input-group-text" for="select-cuisine"
                     >Select a cuisine</label
                   >
+                <div class="input-group mb-3 justify-content-center">
+                 
                   <select class="form-select" id="select-cuisine">
                     <option selected>choose...</option>
                   </select>
@@ -68,8 +69,10 @@
               <div
                 class="card-2 d-flex align-items-center card bg-transparent border-0 col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6"
               >
-                <h2 class="choose-ingredientes">Check the ingredients</h2>
-                <div class="input-group">
+              <label class="input-group-text" for="search-inputII"
+                    >Check the ingredients</label
+                  >
+                <div class="input-group mb-3">
                   <input
                     id="search-input"
                     type="text"
@@ -78,6 +81,7 @@
                     aria-label="Username"
                     aria-describedby="basic-addon1"
                   />
+                  <div class="input-group-append">
                   <button type="submit" id="search-btn">Search</button>
                 </div>
               </div>
@@ -148,14 +152,14 @@
                     meals and ingredients is the first step towards making
                     healthier choices and achieving your wellness goals. That's
                     why we've created CALORIE, an app that makes it easy for you
-                    to check and track your calorie intake and monitor your progress. At
-                    calorie, you'll have access to a database of recipes and their
-                    calorie information, making it simple for you to track what
-                    you're eating and make informed decisions. Whether you're
-                    just starting out or you're a seasoned pro, calorie is the
-                    perfect companion to help you achieve your wellness goals.
-                    So why wait? download calorie today and start your journey
-                    towards a healthier tomorrow.
+                    to check and track your calorie intake and monitor your
+                    progress. At calorie, you'll have access to a database of
+                    recipes and their calorie information, making it simple for
+                    you to track what you're eating and make informed decisions.
+                    Whether you're just starting out or you're a seasoned pro,
+                    calorie is the perfect companion to help you achieve your
+                    wellness goals. So why wait? download calorie today and
+                    start your journey towards a healthier tomorrow.
                   </p>
                 </div>
               </div>
@@ -206,7 +210,6 @@
     <!-- My javaScript file -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
-    <script src="./assets/mock.js"></script>
     <script src="./assets/api.js"></script>
     <script src="./assets/script.js"></script>
   </body>
