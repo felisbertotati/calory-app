@@ -1,6 +1,4 @@
-// create localStorage variable to store users last search
-// initial state is "japanese"
-//local storage
+// create localStorage variable to store users last searches
 let lastSearch = localStorage.search ? JSON.parse(localStorage.search) : [];
 
 //event listener when user selects a cuisine from dropdown menu
@@ -10,7 +8,6 @@ $(document).ready(function () {
       .children("option:selected")
       .text()
       .toLowerCase();
-    // console.log(selectedRecipe);
     userRecipe(selectedRecipe);
   });
 });
@@ -51,42 +48,50 @@ cuisineOptions.forEach(function (cuisine) {
   $("#select-cuisine").append(option);
   i++;
 });
+
 // End of drop down menu
 
-// // function to run depending on the cuisine selected
-// function userRecipe(selectedRecipe) {
-//   // Add last user choice to localStorage
-//   localStorage.initialCuisine = selectedRecipe;
-//   const settings = {
-//     async: true,
-//     crossDomain: true,
-//     url:
-//       "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?" +
-//       "query=" +
-//       selectedRecipe +
-//       "&" +
-//       "cuisine=" +
-//       selectedRecipe +
-//       "& includeIngredients=" +
-//       "& addRecipeInformation=true7741573ef1mshbe8aa22a9c85ee2p1b9a2cjsn22f4bd06bdf0" +
-//       "& sort=calories" +
-//       "& sortDirection=asc" +
-//       "& minCalories=50" +
-//       "& maxCalories=800",
-//     method: "GET",
-//     headers: {
-//       "X-RapidAPI-Key": keyAPI,
-//       "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-//     },
-//   };
-//   // API request
-//   $.ajax(settings).done(function (response) {
-//     //select results from request and put them into variable
-//     var recipeID = response.results;
-//     createCards(recipeID);
-//     //console.log(response);
-//   });
-// }
+// function to run depending on the cuisine selected
+function userRecipe(selectedRecipe) {
+  // Check if this cousine recepies are alerady in localStorage
+  if (localStorage[selectedRecipe]) {
+    console.log("Goes to local storage for " + selectedRecipe + " cuisine results");
+    createCards(JSON.parse(localStorage[selectedRecipe]).results);
+  } else {
+    console.log("Goes to server for " + selectedRecipe + " cuisine results");
+    const settings = {
+      async: true,
+      crossDomain: true,
+      url:
+        "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?" +
+        "query=" +
+        selectedRecipe +
+        "&" +
+        "cuisine=" +
+        selectedRecipe +
+        "& includeIngredients=" +
+        "& addRecipeInformation=true7741573ef1mshbe8aa22a9c85ee2p1b9a2cjsn22f4bd06bdf0" +
+        "& sort=calories" +
+        "& sortDirection=asc" +
+        "& minCalories=50" +
+        "& maxCalories=800",
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": keyAPI,
+        "X-RapidAPI-Host":
+          "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+      },
+    };
+    // API request
+    $.ajax(settings).done(function (response) {
+      //select results from request and put them into variable
+      var recipeID = response.results;
+      createCards(recipeID);
+      localStorage[selectedRecipe] = JSON.stringify(response);
+      //console.log(response);
+    });
+  }
+}
 
 // open food facts Api added in the search ingredient input
 function searchIngredient(searchValue) {
@@ -126,8 +131,7 @@ function ingredientsCards(IngredientArray) {
     let title = $("<h5>")
       .addClass("card-title")
       .text(IngredientArray.product_name + "-" + brand);
-    // let btnLink =
-    //   "https://world.openfoodfacts.org/product/" + IngredientArray.id;
+
     //when user clicks Show more, it will redirect them to openfacts for more info
     let btn = $("<a>")
       .addClass("btn btn-secondary")
@@ -313,25 +317,32 @@ function fillmodal(ingredients) {
 
 //function to get the ingredients once Show Recipe is clicked
 function getIngredients(recipeID) {
-  const settings = {
-    async: true,
-    crossDomain: true,
-    url:
-      "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" +
-      recipeID +
-      "/information",
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": keyAPI,
-      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-    },
-  };
-
-  $.ajax(settings).done(function (response) {
-    // Pass the response to render ingredients and instructions
-    console.log(response);
-    fillmodal(response);
-  });
+  if (localStorage[recipeID]) {
+    var ingredients = JSON.parse(localStorage[recipeID]);
+    console.log("Get " + recipeID + " recipe at local storage");
+    fillmodal(ingredients);
+  } else {
+    console.log("Goes to server for recipe" + recipeID);
+    const settings = {
+      async: true,
+      crossDomain: true,
+      url:
+        "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" +
+        recipeID +
+        "/information",
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": keyAPI,
+        "X-RapidAPI-Host":
+          "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+      },
+    };
+    $.ajax(settings).done(function (response) {
+      // Pass the response to render ingredients and instructions
+      localStorage[recipeID] = JSON.stringify(response);
+      fillmodal(response);
+    });
+  }
 }
 
 // Search works on Enter button key Up
@@ -342,18 +353,14 @@ $("#search-input").on("keyup", function (e) {
   }
 });
 
-//will show last user views
-// Retrieve the stored search values from local storage
-// var storedSearch = localStorage.getItem("search");
-// // If there are stored search values, set lastSearch to the stored values
-// var lastSearch = storedSearch ? JSON.parse(storedSearch) : [];
-console.log(lastSearch);
+//will autocomplete user imputs
 $(function () {
   $("#search-input").autocomplete({
     source: lastSearch,
   });
 });
-//var local;
+
+// will save the results in the local storage
 
 $("#search-btn").click(function () {
   const searchValue = $("#search-input").val();
@@ -363,55 +370,3 @@ $("#search-btn").click(function () {
   localStorage.search = JSON.stringify(lastSearch);
   searchIngredient(searchValue);
 });
-
-// $(function () {
-//   // Retrieve the stored search values from local storage
-//   var storedSearch = localStorage.getItem("search");
-
-//   // If there are stored search values, set lastSearch to the stored values
-//   var lastSearch = storedSearch ? JSON.parse(storedSearch) : [];
-
-//   $.widget("custom.catcomplete", $.ui.autocomplete, {
-//     _create: function () {
-//       this._super();
-//       this.widget().menu(
-//         "option",
-//         "items",
-//         "> :not(.ui-autocomplete-category)"
-//       );
-//     },
-//     _renderMenu: function (ul, items) {
-//       var that = this,
-//         currentCategory = "";
-//       $.each(items, function (index, item) {
-//         var li;
-//         if (item.category != currentCategory) {
-//           ul.append(
-//             "<li class='ui-autocomplete-category'>" + item.category + "</li>"
-//           );
-//           currentCategory = item.category;
-//         }
-//         li = that._renderItemData(ul, item);
-//         if (item.category) {
-//           li.attr("aria-label", item.category + " : " + item.label);
-//         }
-//       });
-//     },
-//   });
-//   var data = lastSearch;
-
-//   $("#search-input").catcomplete({
-//     delay: 0,
-//     source: data,
-//   });
-// });
-
-// $("#search-btn").click(function () {
-//   const searchValue = $("#search-input").val();
-
-//   // Add the new search value to the array
-//   lastSearch.push(searchValue);
-
-//   // Store the updated array in local storage
-//   localStorage.setItem("search", JSON.stringify(lastSearch));
-// });

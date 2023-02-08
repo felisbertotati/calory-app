@@ -4,7 +4,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 /*NAV BAR AND MENU STYLING BEGINS*/
@@ -65,6 +65,7 @@
 
 .discover:hover {
   color: white;
+  text-shadow: 2px 2px black;
 }
 
 
@@ -79,6 +80,7 @@
 
 .input-group-text:hover {
   color: white;
+  text-shadow: 2px 2px black;
 }
 
 #select-cuisine {
@@ -88,7 +90,6 @@
   border-radius: 5px;
   font-size: 20px;
 }
-
 
 .choose-ingredientes {
   color: black;
@@ -100,6 +101,7 @@
 
 .choose-ingredientes:hover {
   color: white;
+  text-shadow: 2px 2px black;
 }
 
 .input-group {
@@ -107,11 +109,9 @@
   height: 40px;
 }
 
-
 .h2 .input-group-text {
   font-size: 30px;
 }
-
 
 /*give margin left to the cards so that they will be center*/
 
@@ -125,6 +125,7 @@
   width: 70px;
   border-radius: 5px;
   border: rgb(217, 198, 241);
+  box-shadow: 0 5px rgb(217, 198, 241);
 }
 
 #search-btn:hover {
@@ -143,35 +144,16 @@
   object-fit: contain;
 }
 
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-
 .about-us {
   text-align: justify;
 }
 
-/*modal styling starts*/
-.modal-header {
-  background-color: rgb(217, 198, 241);
-}
-
-.modal-body {
-  background-color: rgb(217, 198, 241);
-}
-
-
-
-.modal-footer {
-  background-color: rgb(217, 198, 241);
-}
-/*modal styling ends*/
-
 /*About Us Styling Ends*/
-
 
 /*FOOTER STYLING BEGINS*/
 .footer-flex {
@@ -181,18 +163,15 @@
   background-color: rgb(217, 198, 241);
 }
 
-
 /*FOOTER STYLING ENDS*/
 
 @media only screen and (max-width: 768px) {
-
   .logo-nav {
     width: 100px;
     height: 45px;
     margin-left: 20px;
     margin-top: 10px;
   }
-
 
   .nav-link {
     color: black;
@@ -263,8 +242,6 @@ li::marker {
 }
 
 @media only screen and (max-width: 1180px) {
-
-
   /*Check Ingredients text styling*/
   .choose-ingredientes {
     color: black;
@@ -274,9 +251,5 @@ li::marker {
     padding-top: 90px;
     width: 250px;
     height: 120px;
-  }
-
-  .choose-ingredientes:hover {
-    color: white;
   }
 }
