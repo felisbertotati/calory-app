@@ -67,6 +67,7 @@
   color: white;
 }
 
+
 .input-group-text {
   background-color: transparent;
   border: none;
@@ -74,6 +75,7 @@
   font-size: 30px;
   font-weight: bold;
 }
+
 
 .input-group-text:hover {
   color: white;
@@ -92,8 +94,8 @@
   color: black;
   text-align: center;
   font-weight: bold;
-  /*font-size: 30px;*/
   padding-bottom: 15px;
+  
 }
 
 .choose-ingredientes:hover {
@@ -198,7 +200,7 @@
   }
 
   .discover {
-    color: white;
+    color: black;
     text-align: center;
     font-weight: bold;
     font-size: 25px;
@@ -248,59 +250,6 @@
   }
 }
 
-<<<<<<< HEAD
-.discover {
-  color: black;
-  text-align: center;
-  font-weight: bold;
-  font-size: 25px;
-  padding-bottom: 25px;
-}
-
-/*styles cuisine form*/
-#select-cuisine {
-  width: 250px;
-  height: 30px;
-  background-color: rgb(255, 255, 255, 0.8);
-  border-radius: 5px;
-  font-size: 10px;
-}
-
-.input-group {
-  padding-top: 10px;
-  width: 250px;
-  height: 20px;
-}
-
-/*Check Ingredients text styling*/
-.choose-ingredientes {
-  color: black;
-  text-align: center;
-  font-weight: bold;
-  font-size: 25px;
-  padding-top: 90px;
-  width: 250px;
-  height: 20px;
-}
-
-#search-btn {
-  color: rgb(39, 140, 197);
-  width: 70px;
-  border-radius: 5px;
-  border: rgb(39, 140, 197);
-}
-
-#search-btn:hover {
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-
-.h2 .input-group-text {
-  font-size: 20px;
-}
-}
-=======
->>>>>>> 26a28947dd635c12248101c847a9232c50665db7
 /* modal style to fit contents inside modal */
 .modal-header {
   font-size: 25px !important;
@@ -316,21 +265,9 @@ li::marker {
 @media only screen and (max-width: 1180px) {
 
 
-<<<<<<< HEAD
-/*Check Ingredients text styling*/
-.choose-ingredientes {
-  color: black;
-  text-align: center;
-  font-weight: bold;
-  font-size: 25px;
-  padding-top: 90px;
-  width: 250px;
-  height: 120px;
-}
-=======
   /*Check Ingredients text styling*/
   .choose-ingredientes {
-    color: white;
+    color: black;
     text-align: center;
     font-weight: bold;
     font-size: 25px;
@@ -338,7 +275,8 @@ li::marker {
     width: 250px;
     height: 120px;
   }
->>>>>>> 26a28947dd635c12248101c847a9232c50665db7
 
-
+  .choose-ingredientes:hover {
+    color: white;
+  }
 }
