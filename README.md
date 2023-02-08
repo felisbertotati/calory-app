@@ -16,12 +16,10 @@ The following image shows the web application's appearance and functionality:
 
 [Calorie App (1).webm](https://user-images.githubusercontent.com/117319952/217357238-c5f643b3-7102-45a9-8609-28479171b764.webm)
 
-
-## TECHNOLOGY USED
-
 ## LINKS
 
-GITHUB: https://github.com/MarilynWho/calory-app/
+GITHUB: 
+  https://github.com/MarilynWho/calory-app/
 
 LIVE PAGE: 
 
@@ -29,7 +27,7 @@ LIVE PAGE:
 ## IF WE HAD MORE TIME
 
 * Any recipe searched by user will be saved to local storage and is stored under "Your recipes" and is run in a different html file
-* 
+* We will add a geo location feature using Google Maps API to allow user to search restaurants within their area for every recipe selected
 
 ## LICENSE
 MIT
