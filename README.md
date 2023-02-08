@@ -18,18 +18,24 @@ The following image shows the web application's appearance and functionality:
 
 
 ## TECHNOLOGY USED
+* JavaScript, HTML, CSS
+* Bootstrap, JQuery
+* Open Food Fact, Spoonacular APIs
+* GitHub
 
 ## LINKS
 
 GITHUB: https://github.com/MarilynWho/calory-app/
 
-LIVE PAGE: 
+LIVE PAGE: https://marilynwho.github.io/calory-app/
 
 
-## IF WE HAD MORE TIME
+## FUTURE DEVELOPMENTS
 
-* Any recipe searched by user will be saved to local storage and is stored under "Your recipes" and is run in a different html file
-* 
+* creation of a user account/profile feature to easily save favorite recipes
+* a map feature that incorporates geo-location to highlight the popular cuisines in the user's current country
+* the ability to add friends/family to share healthy recipes with one another
+* enable healthy competitions among friends to promote healthy cooking habits
 
 ## LICENSE
 MIT

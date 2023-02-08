@@ -68,7 +68,6 @@
   text-shadow: 2px 2px black;
 }
 
-
 .input-group-text {
   background-color: transparent;
   border: none;
@@ -76,7 +75,6 @@
   font-size: 30px;
   font-weight: bold;
 }
-
 
 .input-group-text:hover {
   color: white;
@@ -95,8 +93,8 @@
   color: black;
   text-align: center;
   font-weight: bold;
+  /*font-size: 30px;*/
   padding-bottom: 15px;
-  
 }
 
 .choose-ingredientes:hover {
@@ -179,7 +177,7 @@
   }
 
   .discover {
-    color: black;
+    color: white;
     text-align: center;
     font-weight: bold;
     font-size: 25px;
@@ -244,7 +242,7 @@ li::marker {
 @media only screen and (max-width: 1180px) {
   /*Check Ingredients text styling*/
   .choose-ingredientes {
-    color: black;
+    color: white;
     text-align: center;
     font-weight: bold;
     font-size: 25px;
