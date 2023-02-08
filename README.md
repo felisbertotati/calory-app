@@ -25,7 +25,8 @@ The following image shows the web application's appearance and functionality:
 
 ## LINKS
 
-GITHUB: https://github.com/MarilynWho/calory-app/
+GITHUB: 
+  https://github.com/MarilynWho/calory-app/
 
 LIVE PAGE: https://marilynwho.github.io/calory-app/
 
